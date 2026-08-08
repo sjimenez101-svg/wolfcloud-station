@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midnight at Wolfcloud Station | Worldwide True Crime & Mysteries</title>
+    
+    <!-- Custom Station Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Fonts & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        station: {
+                            950: '#06080d',
+                            900: '#0b0f19',
+                            850: '#111726',
+                            800: '#182033',
+                            700: '#26334d',
+                            600: '#3d4f73'
+                        },
+                        amberGlow: '#d97706',
+                        amberBright: '#f59e0b',
+                        signalRed: '#ef4444',
+                        corkWood: '#2b1e16'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', '"Courier Prime"', 'monospace'],
+                        typewriter: ['"Courier Prime"', 'monospace'],
+                        cinzel: ['Cinzel', 'serif'],
+                        lcd: ['VT323', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #06080d;
+            color: #cbd5e1;
+            overflow-x: hidden;
+        }
+
+        .bg-grain {
+            background-image: radial-gradient(rgba(245, 158, 11, 0.035) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        @keyframes beaconGlow {
+            0%, 100% { opacity: 0.3; transform: scale(0.95); box-shadow: 0 0 0px #ef4444; }
+            50% { opacity: 1; transform: scale(1.25); box-shadow: 0 0 20px 6px #ef4444; }
+        }
+        .signal-beacon {
+            animation: beaconGlow 2.2s infinite ease-in-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06080d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #26334d;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+
+        .corkboard-bg {
+            background-color: #1a120c;
+            background-image: radial-gradient(#3a2718 15%, transparent 16%), radial-gradient(#291b10 15%, transparent 16%);
+            background-size: 16px 16px;
+            background-position: 0 0, 8px 8px;
+        }
+
+        .polaroid {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0.25s ease;
+        }
+        .polaroid:hover {
+            transform: scale(1.04) rotate(0deg) !important;
+            z-index: 30;
+            box-shadow: 0 20px 30px -10px rgba(245, 158, 11, 0.2), 0 10px 15px -5px rgba(0, 0, 0, 0.9);
+        }
+
+        .vu-needle {
+            transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.4, 1.2);
+            transform-origin: bottom center;
+        }
+
+        input[type=range] {
+            accent-color: #f59e0b;
+        }
+
+        .crt-terminal {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 6px 100%;
+        }
+    </style>
+</head>
+<body class="bg-station-950 font-sans antialiased text-slate-300 selection:bg-amber-900 selection:text-white bg-grain">
+
+    <!-- Top Telemetry Status Bar -->
+    <header class="bg-station-900 border-b border-station-800 text-xs py-2 px-4 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3 font-mono">
+            <div class="flex items-center gap-3">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+                </span>
+                <span class="text-slate-200 font-bold tracking-wider uppercase">CALLSIGN: WCS-4200MHZ</span>
+                <span class="text-slate-700 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline"><i class="fa-solid fa-tower-cell text-red-500 mr-1.5"></i> ELEVATION: 4,200 FT</span>
+                <span class="text-slate-700 hidden lg:inline">|</span>
+                <span class="text-slate-400 hidden lg:inline"><i class="fa-solid fa-radio text-amber-500 mr-1.5"></i> TUNER: ACTIVE</span>
+            </div>
+            
+            <div class="flex items-center gap-4 text-xs">
+                <span id="top-latest-banner" class="text-slate-400 font-mono truncate max-w-xs sm:max-w-md">
+                    <span class="text-amber-500 font-bold">ACTIVE RESEARCH:</span> Clinton Road • The Lead Masks Case • The Springfield Three (1992)
+                </span>
+                <a href="#shortwave-tuner" class="text-amber-400 hover:text-amber-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 transition-colors">
+                    <i class="fa-solid fa-sliders text-[10px]"></i> Radio Dial
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="bg-station-950/90 border-b border-station-800/80 sticky top-[33px] z-40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4 lg:gap-8 xl:gap-12">
+                
+                <!-- Station Crest Brand -->
+                <a href="#" class="flex items-center gap-3.5 group flex-shrink-0">
+                    <div class="relative w-12 h-12 rounded-lg overflow-hidden shadow-lg border border-station-700 group-hover:border-amber-500 transition-all flex-shrink-0">
+                        <img src="logo.png" alt="Midnight at Wolfcloud Station" class="w-full h-full object-cover">
+                        <div class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border border-station-950"></div>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="font-cinzel text-lg sm:text-xl font-bold tracking-wider text-slate-100 group-hover:text-amber-400 transition-colors whitespace-nowrap">
+                            WOLFCLOUD <span class="text-slate-400 font-normal">STATION</span>
+                        </div>
+                        <div class="font-mono text-[10px] text-slate-400 tracking-widest uppercase whitespace-nowrap hidden xl:block">
+                            Midnight True Crime & Global Mysteries
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="hidden lg:flex items-center gap-4 xl:gap-7 font-mono text-xs uppercase tracking-wider text-slate-300">
+                    <a href="#shortwave-tuner" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-radio text-amber-500"></i> Tuner</a>
+                    <a href="#upcoming-cases" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-compass text-amber-500"></i> Upcoming Research</a>
+                    <a href="#case-board" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-note-sticky text-slate-500"></i> Evidence Board</a>
+                    <a href="#transmissions" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-folder-closed text-slate-500"></i> Dossiers</a>
+                    <a href="#podcast-rss" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-tower-broadcast text-slate-500"></i> Archive</a>
+                    <a href="#case-map" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-earth-americas text-slate-500"></i> Radar</a>
+                </div>
+
+                <!-- Channel Links -->
+                <div class="hidden sm:flex items-center gap-3 font-mono">
+                    <a href="https://www.youtube.com/@MidnightatWolfCloudStation" target="_blank" class="bg-red-600/90 hover:bg-red-600 text-white text-xs px-3.5 py-2 rounded border border-red-500/60 flex items-center gap-2 transition-all shadow-md">
+                        <i class="fa-brands fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://open.spotify.com/show/033SFbOhzrHclqSEu3gsoc" target="_blank" class="bg-station-800 hover:bg-station-700 text-slate-200 text-xs px-3.5 py-2 rounded border border-station-700 flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-spotify text-emerald-400"></i> Spotify
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-300 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-station-900 border-b border-station-800 px-4 py-5 font-mono text-xs space-y-3">
+            <a href="#shortwave-tuner" class="block text-amber-400 py-1.5"><i class="fa-solid fa-radio mr-2"></i> Shortwave Tuner</a>
+            <a href="#upcoming-cases" class="block text-amber-400 py-1.5"><i class="fa-solid fa-compass mr-2"></i> Upcoming Cases</a>
+            <a href="#case-board" class="block text-slate-300 hover:text-amber-400 py-1.5"><i class="fa-solid fa-note-sticky mr-2 text-slate-500"></i> Evidence Corkboard</a>
+            <a href="#transmissions" class="block text-slate-300 hover:text-amber-400 py-1.5"><i class="fa-solid fa-folder-closed mr-2 text-slate-500"></i> Transmissions</a>
+            <a href="#podcast-rss" class="block text-slate-300 hover:text-amber-400 py-1.5"><i class="fa-solid fa-tower-broadcast mr-2 text-slate-500"></i> Audio Archive</a>
+            <a href="#case-map" class="block text-slate-300 hover:text-amber-400 py-1.5"><i class="fa-solid fa-earth-americas mr-2 text-slate-500"></i> Radar Map</a>
+            <a href="#dispatch-portal" class="block text-slate-300 hover:text-amber-400 py-1.5"><i class="fa-solid fa-terminal mr-2 text-slate-500"></i> Submit Field Tip</a>
+            <div class="pt-3 border-t border-station-800 flex gap-2">
+                <a href="https://www.youtube.com/@MidnightatWolfCloudStation" target="_blank" class="flex-1 bg-red-600 text-white py-2 rounded text-center"><i class="fa-brands fa-youtube mr-1"></i> YouTube</a>
+                <a href="https://open.spotify.com/show/033SFbOhzrHclqSEu3gsoc" target="_blank" class="flex-1 bg-station-800 text-slate-200 py-2 rounded text-center"><i class="fa-brands fa-spotify text-emerald-400 mr-1"></i> Spotify</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-28 sm:pb-36 border-b border-station-800/80 bg-gradient-to-b from-station-950 via-station-900 to-station-950 overflow-hidden">
+        
+        <div class="absolute top-8 right-8 sm:top-12 sm:right-20 z-0 pointer-events-none opacity-80">
+            <div class="relative flex items-center justify-center">
+                <div class="absolute w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-amber-200/10 blur-xl"></div>
+                <svg class="w-16 h-16 sm:w-24 sm:h-24 text-amber-100 drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M 50 10 A 40 40 0 1 0 90 50 A 32 32 0 1 1 50 10 Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <canvas id="mist-canvas" class="absolute inset-0 z-10 pointer-events-none opacity-40 w-full h-full"></canvas>
+
+        <div class="relative z-20 max-w-5xl mx-auto px-4 text-center">
+            
+            <div class="relative w-12 h-24 mx-auto mb-6">
+                <svg viewBox="0 0 100 180" class="w-full h-full text-slate-500 fill-none stroke-current stroke-[3]">
+                    <line x1="50" y1="20" x2="20" y2="180" />
+                    <line x1="50" y1="20" x2="80" y2="180" />
+                    <line x1="32" y1="90" x2="68" y2="90" />
+                    <line x1="24" y1="130" x2="76" y2="130" />
+                    <line x1="38" y1="60" x2="62" y2="60" />
+                    <line x1="50" y1="0" x2="50" y2="20" />
+                </svg>
+                <div class="absolute top-0 left-[50%] -translate-x-[50%] w-3.5 h-3.5 bg-red-500 rounded-full signal-beacon"></div>
+            </div>
+
+            <div class="inline-flex items-center gap-2 bg-station-900/90 border border-station-700/80 px-4 py-1.5 rounded-full mb-6 text-xs font-mono shadow-md backdrop-blur-sm">
+                <span class="text-amber-400 font-bold"><i class="fa-solid fa-microphone-lines text-red-500 mr-1.5"></i> HOSTED BY SIERRA STERLING</span>
+                <span class="text-slate-600">•</span>
+                <span class="text-slate-400">PNW LOOKOUT TOWER ARCHIVES</span>
+            </div>
+
+            <h1 class="font-typewriter text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-100 uppercase mb-4 leading-tight drop-shadow-lg">
+                MIDNIGHT AT<br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">WOLFCLOUD STATION</span>
+            </h1>
+
+            <p class="font-mono text-slate-300 text-sm sm:text-base md:text-lg tracking-wider max-w-2xl mx-auto mb-8 border-y border-station-800/80 py-3 backdrop-blur-sm">
+                DEEP DIVES. TRUE CRIME. WORLDWIDE MYSTERIES.
+            </p>
+
+            <p class="text-slate-300 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed mb-8 font-light">
+                Broadcasting deep from our secluded Pacific Northwest lookout station, unravelling unsolved cold cases, international mysteries, and dark global lore from every corner of the world.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 font-mono text-xs">
+                <a href="#upcoming-cases" class="bg-amber-500 hover:bg-amber-400 text-station-950 font-bold px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-compass"></i> Upcoming Research Dossiers
+                </a>
+                <a href="#shortwave-tuner" class="bg-station-900 hover:bg-station-800 text-slate-200 border border-station-700 px-6 py-3 rounded-lg flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-radio text-amber-500"></i> Shortwave Tuner
+                </a>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-0 inset-x-0 w-full h-24 sm:h-36 z-10 pointer-events-none opacity-85 text-station-950 fill-current">
+            <svg class="w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,120 L0,60 L120,40 L250,75 L380,30 L520,65 L680,25 L840,70 L1020,35 L1200,55 L1200,120 Z" opacity="0.5" fill="#0b0f19"/>
+                <path d="M0,120 L0,70 L15,85 L20,60 L25,85 L35,90 L40,50 L45,90 L60,80 L65,45 L70,80 L85,88 L90,55 L95,88 L115,75 L120,35 L125,75 L145,85 L150,55 L155,85 L180,95 L185,40 L190,95 L220,80 L225,48 L230,80 L260,90 L265,30 L270,90 L300,85 L305,50 L310,85 L340,95 L345,40 L350,95 L390,75 L395,25 L400,75 L430,85 L435,55 L440,85 L480,95 L485,35 L490,95 L530,80 L535,45 L540,80 L580,90 L585,20 L590,90 L630,85 L635,50 L640,85 L680,95 L685,30 L690,95 L730,80 L735,45 L740,80 L780,90 L785,25 L790,90 L830,85 L835,55 L840,85 L880,95 L885,35 L890,95 L930,80 L935,48 L940,80 L980,90 L985,30 L990,90 L1030,85 L1035,52 L1040,85 L1080,95 L1085,40 L1090,95 L1130,80 L1135,45 L1140,80 L1180,90 L1185,35 L1190,90 L1200,75 L1200,120 Z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- UPCOMING CASES CURRENTLY IN RESEARCH SECTION -->
+    <section id="upcoming-cases" class="py-20 bg-station-900/90 border-b border-station-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-station-800 pb-4">
+                <div>
+                    <span class="font-mono text-xs text-amber-500 uppercase tracking-widest flex items-center gap-1.5">
+                        <i class="fa-solid fa-magnifying-glass text-red-500 animate-pulse"></i> SIERRA'S ACTIVE INVESTIGATIONS
+                    </span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-slate-100 mt-1">
+                        UPCOMING CASES IN RESEARCH
+                    </h2>
+                </div>
+                <div class="font-mono text-xs text-slate-400">
+                    <span class="text-amber-400 font-bold">3 DISPATCHES</span> IN PRODUCTION & DRAFTING
+                </div>
+            </div>
+
+            <!-- Featured Cases Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- UPCOMING CASE 1: The Springfield Three -->
+                <article class="bg-station-950 border-2 border-station-800 hover:border-red-500/80 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-red-500/10 border-b border-l border-red-500/30 text-red-400 font-mono text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider">
+                        EVIDENCE COMPILATION
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-station-900 border border-station-700 rounded-xl flex items-center justify-center text-red-400 text-xl shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-house-chimney-crack"></i>
+                        </div>
+
+                        <div>
+                            <div class="font-mono text-[11px] text-slate-400 flex items-center gap-1.5 mb-1">
+                                <i class="fa-solid fa-location-dot text-red-500"></i> Springfield, Missouri
+                            </div>
+                            <h3 class="font-cinzel text-xl font-bold text-slate-100 group-hover:text-red-400 transition-colors">
+                                The Springfield Three
+                            </h3>
+                            <span class="font-mono text-[10px] text-slate-500">DATE: JUNE 7, 1992</span>
+                        </div>
+
+                        <p class="text-slate-300 text-xs font-light leading-relaxed line-clamp-4">
+                            In the early hours of June 7, 1992, three women—Suzanne Streeter, her mother Sherrill Levitt, and Suzanne's friend Stacy McCall—vanished without a trace from a home in Springfield, Missouri. The house was left undisturbed: purses, keys, and cars remained behind, and Sherrill's porch light fixture was found shattered on the ground. Despite a substantial reward and decades of tips, none of the three women has ever been found.
+                        </p>
+                    </div>
+
+                    <div class="pt-6 border-t border-station-800/80 mt-6 flex items-center justify-between font-mono text-xs">
+                        <span class="text-slate-500 text-[10px]"><i class="fa-solid fa-microphone text-red-500 mr-1"></i> Recording Phase</span>
+                        <button onclick="openResearchDossier('springfieldthree')" class="text-red-400 hover:text-red-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Inspect Case <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- UPCOMING CASE 2: Clinton Road -->
+                <article class="bg-station-950 border-2 border-station-800 hover:border-amber-500/80 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-amber-500/10 border-b border-l border-amber-500/30 text-amber-400 font-mono text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider">
+                        RESEARCH IN PROGRESS
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-station-900 border border-station-700 rounded-xl flex items-center justify-center text-amber-400 text-xl shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-road"></i>
+                        </div>
+
+                        <div>
+                            <div class="font-mono text-[11px] text-slate-400 flex items-center gap-1.5 mb-1">
+                                <i class="fa-solid fa-location-dot text-amber-500"></i> West Milford, New Jersey
+                            </div>
+                            <h3 class="font-cinzel text-xl font-bold text-slate-100 group-hover:text-amber-400 transition-colors">
+                                Clinton Road
+                            </h3>
+                            <span class="font-mono text-[10px] text-slate-500">ONGOING: LEGEND & LORE</span>
+                        </div>
+
+                        <p class="text-slate-300 text-xs font-light leading-relaxed line-clamp-4">
+                            Stretching roughly ten miles through the Passaic County woods, Clinton Road has earned a reputation as one of the most haunted roads in America. Decades of reported ghost sightings, phantom vehicles, a cursed stone bridge, and a string of unsolved disappearances have turned this stretch of rural New Jersey into a magnet for legend-trippers and true crime researchers alike.
+                        </p>
+                    </div>
+
+                    <div class="pt-6 border-t border-station-800/80 mt-6 flex items-center justify-between font-mono text-xs">
+                        <span class="text-slate-500 text-[10px]"><i class="fa-solid fa-clock text-amber-500 mr-1"></i> Script Draft 20%</span>
+                        <button onclick="openResearchDossier('clintonroad')" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Inspect Case <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- UPCOMING CASE 3: The Lead Masks Case -->
+                <article class="bg-station-950 border-2 border-station-800 hover:border-emerald-500/80 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-emerald-500/10 border-b border-l border-emerald-500/30 text-emerald-400 font-mono text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider">
+                        ARCHIVE TRANSLATION
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-station-900 border border-station-700 rounded-xl flex items-center justify-center text-emerald-400 text-xl shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-mask"></i>
+                        </div>
+
+                        <div>
+                            <div class="font-mono text-[11px] text-slate-400 flex items-center gap-1.5 mb-1">
+                                <i class="fa-solid fa-location-dot text-emerald-500"></i> Niterói, Rio de Janeiro, Brazil
+                            </div>
+                            <h3 class="font-cinzel text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                                The Lead Masks Case
+                            </h3>
+                            <span class="font-mono text-[10px] text-slate-500">DATE: AUGUST 19, 1966</span>
+                        </div>
+
+                        <p class="text-slate-300 text-xs font-light leading-relaxed line-clamp-4">
+                            Two Brazilian electronic technicians, Manoel Pereira da Cruz and Miguel José Viana, were found dead on a desolate hill wearing formal suits, raincoats, and custom lead eye masks designed to protect against radiation. Found next to them was a mysterious notebook containing cryptic instructions: "16:30 be at the specified location... 18:30 swallow capsules, after effect protect metals wait for signal mask."
+                        </p>
+                    </div>
+
+                    <div class="pt-6 border-t border-station-800/80 mt-6 flex items-center justify-between font-mono text-xs">
+                        <span class="text-slate-500 text-[10px]"><i class="fa-solid fa-file-invoice text-emerald-500 mr-1"></i> Final Polish</span>
+                        <button onclick="openResearchDossier('leadmasks')" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Inspect Case <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SHORTWAVE RADIO TUNER MINI-GAME SECTION -->
+    <section id="shortwave-tuner" class="py-16 bg-station-950 border-b border-station-800 relative z-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-widest"><i class="fa-solid fa-sliders mr-1.5"></i> Interactive Receiver Easter Egg</span>
+                <h2 class="font-cinzel text-3xl font-bold text-slate-100 mt-1">SHORTWAVE FREQUENCY TUNER</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light">
+                    Turn the frequency dial between 3.0 MHz and 30.0 MHz to sweep the radio spectrum. Intercept static, Morse code beacons, and research signals.
+                </p>
+            </div>
+
+            <!-- Radio Console Outer Frame -->
+            <div class="bg-gradient-to-b from-station-900 to-station-950 border-2 border-station-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden font-mono">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-red-500 to-amber-500"></div>
+
+                <!-- Tuner Top Status Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-station-800 pb-4 mb-6 text-xs">
+                    <div class="flex items-center gap-3">
+                        <button id="radio-power-btn" class="bg-red-950 hover:bg-red-900 border border-red-700 text-red-400 px-3.5 py-1.5 rounded flex items-center gap-2 font-bold transition-all shadow">
+                            <span id="radio-power-led" class="w-2 h-2 rounded-full bg-red-600"></span>
+                            <span id="radio-power-label">POWER: OFF</span>
+                        </button>
+                        <span class="text-slate-500">|</span>
+                        <span class="text-slate-400"><i class="fa-solid fa-tower-cell text-amber-500 mr-1"></i> RECEIVER MODEL: WCS-1978-SW</span>
+                    </div>
+
+                    <!-- Preset Quick Buttons -->
+                    <div class="flex flex-wrap items-center gap-2 text-[11px]">
+                        <span class="text-slate-500 mr-1">PRESETS:</span>
+                        <button onclick="setRadioFreq(4.20)" class="bg-station-850 hover:bg-station-800 text-amber-400 px-2.5 py-1 rounded border border-station-700">4.20 MHz (PNW)</button>
+                        <button onclick="setRadioFreq(11.85)" class="bg-station-850 hover:bg-station-800 text-emerald-400 px-2.5 py-1 rounded border border-station-700">11.85 MHz (Lead Masks)</button>
+                        <button onclick="setRadioFreq(14.30)" class="bg-station-850 hover:bg-station-800 text-red-400 px-2.5 py-1 rounded border border-station-700">14.30 MHz (Keddie Cabin)</button>
+                        <button onclick="setRadioFreq(18.60)" class="bg-station-850 hover:bg-station-800 text-amber-300 px-2.5 py-1 rounded border border-station-700">18.60 MHz (Clinton Road)</button>
+                    </div>
+                </div>
+
+                <!-- Tuner Control Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    
+                    <!-- Left: Signal Telemetry & VU Meter -->
+                    <div class="lg:col-span-4 bg-station-950 border border-station-800 rounded-xl p-5 flex flex-col justify-between h-full space-y-4">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400 font-bold">SIGNAL STRENGTH (VU)</span>
+                            <span id="signal-quality-badge" class="text-slate-500 text-[10px] bg-station-900 border border-station-800 px-2 py-0.5 rounded">STATIC</span>
+                        </div>
+
+                        <!-- Analog VU Meter Box -->
+                        <div class="relative bg-amber-950/20 border border-amber-900/40 rounded-lg p-4 h-28 flex flex-col justify-end items-center overflow-hidden">
+                            <!-- Meter Arc Graphic -->
+                            <svg class="absolute inset-0 w-full h-full text-amber-500/20" viewBox="0 0 200 100" fill="none">
+                                <path d="M20 90 A 80 80 0 0 1 180 90" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                                <text x="30" y="80" class="fill-amber-500/50 text-[10px]">0</text>
+                                <text x="95" y="40" class="fill-amber-500/50 text-[10px]">50</text>
+                                <text x="160" y="80" class="fill-amber-500/50 text-[10px]">100</text>
+                            </svg>
+
+                            <!-- Needle -->
+                            <div id="vu-needle-arm" class="vu-needle w-0.5 h-16 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444] -rotate-45 mb-1"></div>
+                            <div class="w-4 h-4 bg-station-800 rounded-full border border-amber-500 z-10"></div>
+                        </div>
+
+                        <div class="text-[11px] text-slate-400 space-y-1">
+                            <div class="flex justify-between"><span class="text-slate-500">BAND:</span> <span class="text-slate-200">3.0 - 30.0 MHz HF</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">CARRIER:</span> <span id="radio-carrier-status" class="text-amber-400">DISCONNECTED</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Frequency Dial & Audio Feedback Display -->
+                    <div class="lg:col-span-8 space-y-6">
+                        
+                        <!-- LCD Frequency Readout -->
+                        <div class="bg-black border-2 border-station-700 rounded-xl p-5 shadow-inner flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <div class="text-[10px] text-amber-600 font-bold tracking-widest uppercase">TUNED FREQUENCY</div>
+                                <div class="flex items-baseline gap-2">
+                                    <span id="freq-display" class="font-lcd text-5xl sm:text-6xl text-amber-500 font-bold tracking-wider drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]">
+                                        04.20
+                                    </span>
+                                    <span class="text-amber-600 text-lg font-bold">MHz</span>
+                                </div>
+                            </div>
+
+                            <div class="text-right sm:text-right w-full sm:w-auto border-t sm:border-t-0 border-station-800 pt-3 sm:pt-0">
+                                <div class="text-[10px] text-slate-500 uppercase">SIGNAL LOG IDENTIFIER</div>
+                                <div id="freq-station-name" class="text-sm font-bold text-slate-200 font-cinzel">
+                                    WCS Base Beacon (4,200 ft)
+                                </div>
+                                <div id="freq-station-desc" class="text-xs text-slate-400 font-sans font-light mt-0.5 max-w-sm">
+                                    Standard telemetry loop from Sierra Sterling's desk.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Dial Slider Control -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs text-slate-400">
+                                <span>3.0 MHz</span>
+                                <span class="text-amber-500 font-bold"><i class="fa-solid fa-hand-pointer mr-1"></i> DRAG DIAL TO TUNE</span>
+                                <span>30.0 MHz</span>
+                            </div>
+
+                            <input type="range" id="radio-freq-slider" min="3.0" max="30.0" step="0.05" value="4.20" class="w-full h-3 bg-station-950 rounded-lg appearance-none cursor-pointer border border-station-700">
+
+                            <!-- Frequency Tick Scale -->
+                            <div class="flex justify-between text-[9px] text-slate-600 font-mono pt-1">
+                                <span>3.0</span>
+                                <span>7.5</span>
+                                <span>12.0</span>
+                                <span>16.5</span>
+                                <span>21.0</span>
+                                <span>25.5</span>
+                                <span>30.0</span>
+                            </div>
+                        </div>
+
+                        <!-- Audio Teaser / Morse Output Box -->
+                        <div class="bg-station-950/80 border border-station-800 rounded-lg p-3 text-xs flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2.5 truncate">
+                                <i id="radio-audio-icon" class="fa-solid fa-volume-xmark text-slate-500"></i>
+                                <span id="radio-audio-text" class="text-slate-400 truncate">Turn power on to start receiver audio circuit...</span>
+                            </div>
+                            <button id="radio-mute-btn" class="text-slate-400 hover:text-amber-400 text-xs whitespace-nowrap border border-station-800 px-2 py-1 rounded">
+                                Mute Static
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE CASE BOARD / CORKBOARD EVIDENCE SECTION -->
+    <section id="case-board" class="py-20 corkboard-bg border-b border-station-800 relative z-20 overflow-hidden">
+        
+        <!-- Ambient Desk Lamp Warm Glow Top Right -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-amber-900/40 pb-4">
+                <div>
+                    <span class="font-mono text-xs text-amber-500 uppercase tracking-widest"><i class="fa-solid fa-thumbtack mr-1.5"></i> Sierra's Investigation Desk</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-amber-100">CLASSIFIED EVIDENCE BOARD</h2>
+                </div>
+                <div class="font-mono text-xs text-amber-400/80">
+                    <i class="fa-solid fa-circle-info mr-1"></i> Click polaroids & case notes to open raw evidence files.
+                </div>
+            </div>
+
+            <!-- Evidence Corkboard Grid Frame -->
+            <div class="relative min-h-[580px] bg-station-950/40 border-4 border-amber-950 rounded-2xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+                
+                <!-- SVG Yarn Strings overlay linking notes -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-75" viewBox="0 0 1000 600" preserveAspectRatio="none">
+                    <path d="M 180 180 L 480 140" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="3 2" />
+                    <path d="M 480 140 L 800 220" stroke="#ef4444" stroke-width="2.5" />
+                    <path d="M 220 420 L 520 410" stroke="#ef4444" stroke-width="2" />
+                    <path d="M 520 410 L 820 430" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4 2" />
+                </svg>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 relative z-20">
+                    
+                    <!-- Evidence Item 1: Lead Masks Note -->
+                    <div class="polaroid bg-amber-50/95 text-station-950 p-4 rounded-sm rotate-[-2deg] cursor-pointer" onclick="openEvidenceInspector('leadmask_note')">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-emerald-600 rounded-full border border-black shadow-md z-30"></div>
+                        
+                        <div class="h-44 bg-station-900 rounded-sm overflow-hidden relative mb-3 flex items-center justify-center border border-amber-900/20">
+                            <i class="fa-solid fa-mask text-5xl text-emerald-400 opacity-80"></i>
+                            <span class="absolute bottom-2 left-2 bg-black/80 text-emerald-400 font-mono text-[9px] px-2 py-0.5 rounded">ITEM #LM-1966-A</span>
+                        </div>
+                        
+                        <h4 class="font-typewriter font-bold text-sm text-amber-950 uppercase">THE CRYPTIC NOTEBOOK</h4>
+                        <p class="font-typewriter text-xs text-slate-700 line-clamp-2 mt-1">
+                            Found beside the bodies: "swallow capsules, after effect protect metals wait for signal mask."
+                        </p>
+                    </div>
+
+                    <!-- Evidence Item 2: Cabin 28 Claw Hammer -->
+                    <div class="polaroid bg-amber-50/95 text-station-950 p-4 rounded-sm rotate-[3deg] cursor-pointer" onclick="openEvidenceInspector('keddie_hammer')">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border border-black shadow-md z-30"></div>
+                        
+                        <div class="h-44 bg-station-900 rounded-sm overflow-hidden relative mb-3 flex items-center justify-center border border-amber-900/20">
+                            <i class="fa-solid fa-hammer text-5xl text-red-500 opacity-80"></i>
+                            <span class="absolute bottom-2 left-2 bg-black/80 text-amber-400 font-mono text-[9px] px-2 py-0.5 rounded">ITEM #KD-1981-A</span>
+                        </div>
+                        
+                        <h4 class="font-typewriter font-bold text-sm text-amber-950 uppercase">THE RECOVERED HAMMER</h4>
+                        <p class="font-typewriter text-xs text-slate-700 line-clamp-2 mt-1">
+                            Claw hammer located in a nearby pond years later matched forensic marks left in Cabin 28.
+                        </p>
+                    </div>
+
+                    <!-- Evidence Item 3: Glastenbury Mountain Map -->
+                    <div class="polaroid bg-amber-100 text-station-950 p-4 rounded-sm rotate-[-1deg] cursor-pointer" onclick="openEvidenceInspector('bennington_map')">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-amber-600 rounded-full border border-black shadow-md z-30"></div>
+                        
+                        <div class="font-typewriter text-xs border-b border-amber-900/20 pb-2 mb-2 font-bold text-red-700 uppercase">
+                            BENNINGTON TRAIL LOG
+                        </div>
+                        <p class="font-typewriter text-xs text-slate-800 leading-relaxed">
+                            "Paula Welden vanished on Long Trail in broad daylight. James Tetford vanished from a moving bus between Bennington and Bennington bus terminal."
+                        </p>
+                        <div class="mt-4 pt-2 border-t border-amber-900/20 text-[10px] font-mono text-slate-600 flex justify-between">
+                            <span>VERMONT POLICE LOG</span>
+                            <span>VERIFIED</span>
+                        </div>
+                    </div>
+
+                    <!-- Evidence Item 4: Yuba 5 Abandoned Monte Carlo -->
+                    <div class="polaroid bg-amber-50/95 text-station-950 p-4 rounded-sm rotate-[2deg] cursor-pointer" onclick="openEvidenceInspector('yubacar')">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border border-black shadow-md z-30"></div>
+                        
+                        <div class="h-44 bg-station-900 rounded-sm overflow-hidden relative mb-3 flex items-center justify-center border border-amber-900/20">
+                            <i class="fa-solid fa-car text-5xl text-amber-500 opacity-80"></i>
+                            <span class="absolute bottom-2 left-2 bg-black/80 text-amber-400 font-mono text-[9px] px-2 py-0.5 rounded">ITEM #YB-1978-A</span>
+                        </div>
+                        
+                        <h4 class="font-typewriter font-bold text-sm text-amber-950 uppercase">1969 MONTE CARLO</h4>
+                        <p class="font-typewriter text-xs text-slate-700 line-clamp-2 mt-1">
+                            Found unlocked in Plumas National Forest. Engine started immediately; fuel tank standard full.
+                        </p>
+                    </div>
+
+                    <!-- Evidence Item 5: Forest Service Trailer Supply Log -->
+                    <div class="polaroid bg-amber-50/95 text-station-950 p-4 rounded-sm rotate-[-3deg] cursor-pointer" onclick="openEvidenceInspector('trailer')">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border border-black shadow-md z-30"></div>
+                        
+                        <div class="h-44 bg-station-900 rounded-sm overflow-hidden relative mb-3 flex items-center justify-center border border-amber-900/20">
+                            <i class="fa-solid fa-campground text-5xl text-emerald-500 opacity-80"></i>
+                            <span class="absolute bottom-2 left-2 bg-black/80 text-amber-400 font-mono text-[9px] px-2 py-0.5 rounded">ITEM #YB-1978-B</span>
+                        </div>
+                        
+                        <h4 class="font-typewriter font-bold text-sm text-amber-950 uppercase">TRAILER RATIONS LOG</h4>
+                        <p class="font-typewriter text-xs text-slate-700 line-clamp-2 mt-1">
+                            Ted Weiher survived ~11 weeks inside USFS trailer. C-rations consumed; heat source unused.
+                        </p>
+                    </div>
+
+                    <!-- Evidence Item 6: Shortwave Intercept Dispatch -->
+                    <div class="polaroid bg-slate-900 text-amber-100 p-4 rounded-sm rotate-[1deg] border border-amber-500/40 cursor-pointer" onclick="openEvidenceInspector('dispatch')">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-amber-500 rounded-full border border-black shadow-md z-30"></div>
+                        
+                        <div class="font-mono text-[10px] text-amber-400 uppercase border-b border-station-700 pb-1 mb-2">
+                            SIGNAL DISPATCH LOG #4200
+                        </div>
+                        <p class="font-mono text-xs text-slate-300 leading-relaxed">
+                            "Unusual shortwave signal recorded near Sierra Nevada range matches coordinates logged during winter storms."
+                        </p>
+                        <div class="mt-4 pt-2 border-t border-station-800 text-[10px] font-mono text-amber-500 flex justify-between">
+                            <span>WCS-LOOKOUT HQ</span>
+                            <span>INSPECT DOSSIER →</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Transmissions Section -->
+    <section id="transmissions" class="py-16 bg-station-950 border-b border-station-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 border-b border-station-800/80 pb-4">
+                <div>
+                    <span class="font-mono text-xs text-amber-500 uppercase tracking-widest"><i class="fa-solid fa-folder-open mr-1.5"></i> Station Archives</span>
+                    <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-100">TRANSMISSION FILES</h2>
+                </div>
+                <div id="transmissions-count" class="font-mono text-xs text-slate-400">
+                    Syncing with live RSS dispatch...
+                </div>
+            </div>
+
+            <!-- Dynamic RSS Cards Container -->
+            <div id="transmissions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="col-span-full py-16 text-center font-mono text-xs text-slate-500 space-y-3">
+                    <i class="fa-solid fa-satellite-dish text-3xl text-amber-500 animate-pulse"></i>
+                    <div>Connecting to Anchor RSS dispatch for <strong>wolfcloudstation.com</strong>...</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Broadcast Archive & Audio Player -->
+    <section id="podcast-rss" class="py-16 bg-station-900/90 border-b border-station-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-amber-950/60 border border-amber-800/50 text-amber-400 font-mono text-[11px] px-3 py-1 rounded-full mb-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                        <span>OFFICIAL PODCAST AUDIO CONSOLE</span>
+                    </div>
+                    <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-100">STATION BROADCAST ARCHIVE</h2>
+                </div>
+                <div class="flex items-center gap-3 font-mono text-xs">
+                    <a href="https://anchor.fm/s/1151d3344/podcast/rss" target="_blank" class="bg-station-950 border border-station-700 hover:border-amber-500 text-slate-300 px-3.5 py-2 rounded flex items-center gap-2 transition-colors">
+                        <i class="fa-solid fa-rss text-orange-500"></i> Anchor RSS Feed
+                    </a>
+                </div>
+            </div>
+
+            <!-- Audio Console Box -->
+            <div class="bg-station-950 border border-station-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden mb-8">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-6">
+                    <div class="w-32 h-32 sm:w-40 sm:h-40 bg-station-900 rounded-xl border border-station-800 flex-shrink-0 flex items-center justify-center relative overflow-hidden shadow-lg">
+                        <img id="player-artwork" src="" alt="Episode Cover" class="w-full h-full object-cover hidden">
+                        <div id="player-artwork-fallback" class="text-center p-3">
+                            <i class="fa-solid fa-tower-observation text-4xl text-amber-500 mb-2"></i>
+                            <div class="font-mono text-[9px] text-slate-400 uppercase tracking-widest">WCS RADIO</div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 w-full space-y-4 font-mono">
+                        <div class="flex flex-wrap justify-between items-center gap-2 border-b border-station-800/80 pb-2">
+                            <span id="player-date" class="text-slate-400 text-xs">SELECT TRANSMISSION BELOW</span>
+                            <span id="player-badge" class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] px-2.5 py-0.5 rounded font-bold">READY</span>
+                        </div>
+
+                        <div>
+                            <h3 id="player-title" class="font-cinzel text-xl sm:text-2xl font-bold text-slate-100 line-clamp-1">
+                                Loading Transmission Audio...
+                            </h3>
+                            <p id="player-desc" class="text-xs text-slate-400 line-clamp-2 mt-1 font-sans font-light">
+                                Loading full dispatch details from station feed...
+                            </p>
+                        </div>
+
+                        <div class="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">
+                            <div class="flex items-center gap-2">
+                                <button id="player-skip-back" title="Skip back 10s" class="w-9 h-9 bg-station-900 hover:bg-station-800 text-slate-300 rounded-full border border-station-700 flex items-center justify-center text-xs transition-colors">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                </button>
+                                <button id="player-play-btn" class="w-12 h-12 bg-amber-500 hover:bg-amber-400 text-station-950 rounded-full flex items-center justify-center font-bold text-lg transition-transform active:scale-95 shadow-lg shadow-amber-500/20">
+                                    <i id="player-play-icon" class="fa-solid fa-play ml-0.5"></i>
+                                </button>
+                                <button id="player-skip-forward" title="Skip forward 30s" class="w-9 h-9 bg-station-900 hover:bg-station-800 text-slate-300 rounded-full border border-station-700 flex items-center justify-center text-xs transition-colors">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex-1 flex items-center gap-3">
+                                <span id="player-current-time" class="text-xs text-slate-400">00:00</span>
+                                <input type="range" id="player-seek-bar" value="0" min="0" max="100" class="w-full h-1.5 bg-station-800 rounded-lg appearance-none cursor-pointer">
+                                <span id="player-total-time" class="text-xs text-slate-400">00:00</span>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <button id="player-speed-btn" class="text-xs bg-station-900 border border-station-700 text-amber-400 px-2 py-1 rounded hover:bg-station-800 font-bold">
+                                    1.0x
+                                </button>
+                                <div class="flex items-center gap-1.5 text-slate-400">
+                                    <i class="fa-solid fa-volume-high text-xs"></i>
+                                    <input type="range" id="player-volume-bar" value="100" min="0" max="100" class="w-16 h-1.5 bg-station-800 rounded-lg appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <audio id="station-audio" class="hidden"></audio>
+            </div>
+
+            <!-- RSS Episode Dispatch List -->
+            <div class="bg-station-950 border border-station-800 rounded-xl p-5">
+                <div class="flex justify-between items-center mb-3 font-mono text-xs text-slate-400">
+                    <span><i class="fa-solid fa-list text-amber-500 mr-2"></i> RECENT FEED DISPATCHES</span>
+                    <span id="rss-list-count">Loading...</span>
+                </div>
+                <div id="rss-feed-list" class="space-y-2 max-h-80 overflow-y-auto pr-1">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Global Mystery Radar -->
+    <section id="case-map" class="py-20 bg-station-950 border-b border-station-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-widest"><i class="fa-solid fa-radar mr-1.5"></i> Satellite Telemetry</span>
+                <h2 class="font-cinzel text-3xl font-bold text-slate-100 mt-1">GLOBAL MYSTERY RADAR</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 font-light">
+                    Select active investigation pins to view location telemetry logged from our Pacific Northwest station.
+                </p>
+            </div>
+
+            <div class="bg-station-900 border border-station-800 rounded-2xl p-6 shadow-2xl relative">
+                
+                <div class="flex flex-wrap justify-between items-center gap-3 border-b border-station-800 pb-3 font-mono text-xs text-slate-400">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>SATELLITE FEED: ONLINE</span>
+                    </div>
+                    <div>SECTOR MAP: ACTIVE & UPCOMING CASE RADAR</div>
+                </div>
+
+                <div class="relative my-8 h-80 w-full flex items-center justify-center overflow-hidden bg-station-950/60 rounded-xl border border-station-800/60">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f293d20_1px,transparent_1px),linear-gradient(to_bottom,#1f293d20_1px,transparent_1px)] bg-[size:28px_28px]"></div>
+
+                    <svg class="absolute inset-0 w-full h-full opacity-25 text-slate-600 fill-current" viewBox="0 0 1000 500" preserveAspectRatio="none">
+                        <!-- North America -->
+                        <path d="M120,95 L200,60 L280,55 L335,85 L345,130 L310,175 L295,215 L255,205 L225,225 L195,195 L165,205 L145,160 L110,140 Z" />
+                        <!-- South America -->
+                        <path d="M320,235 L360,225 L400,245 L415,265 L410,320 L395,375 L375,395 L345,385 L330,335 L305,290 L300,255 Z" />
+                        <!-- Europe -->
+                        <path d="M430,65 L470,50 L510,55 L525,80 L515,105 L495,125 L465,120 L440,105 L425,85 Z" />
+                        <!-- Africa -->
+                        <path d="M460,135 L500,130 L525,150 L535,200 L520,260 L495,290 L470,275 L465,220 L450,175 Z" />
+                        <!-- Asia -->
+                        <path d="M540,60 L650,45 L780,60 L850,100 L830,150 L750,170 L680,145 L610,155 L555,120 L535,90 Z" />
+                        <!-- Australia -->
+                        <path d="M780,300 L850,290 L890,315 L875,350 L810,355 L775,330 Z" />
+                    </svg>
+
+                    <!-- Pin 1: PNW Lookout HQ -->
+                    <div class="absolute top-[24%] left-[16%] group cursor-pointer" onclick="updateRadarSpotlight('Base Station HQ (Pacific Northwest)', 'Lookout Tower Elevation 4,200 ft. Operations center where Sierra Sterling broadcasts worldwide cold cases.', 'PNW, USA')">
+                        <div class="relative flex items-center justify-center">
+                            <span class="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-amber-400 opacity-60"></span>
+                            <div class="w-6 h-6 bg-amber-500 rounded-full border-2 border-station-950 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-tower-observation text-[10px] text-station-950 font-bold"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pin 2: Clinton Road (New Jersey) -->
+                    <div class="absolute top-[28%] left-[32%] group cursor-pointer" onclick="updateRadarSpotlight('Clinton Road', 'West Milford, New Jersey. A haunted ten-mile stretch of rural road tied to decades of ghost lore and unsolved disappearances.', 'West Milford, NJ')">
+                        <div class="relative flex items-center justify-center">
+                            <span class="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-amber-400 opacity-60"></span>
+                            <div class="w-5 h-5 bg-amber-500 rounded-full border-2 border-station-950 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-road text-[8px] text-station-950"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pin 3: Keddie Cabin Murders (California) -->
+                    <div class="absolute top-[28%] left-[16%] group cursor-pointer" onclick="updateRadarSpotlight('The Keddie Cabin Murders', 'Cabin 28, Keddie, California (1981). Unsolved quadruple homicide and abduction in Sierra Nevada resort.', 'Keddie, CA')">
+                        <div class="relative flex items-center justify-center">
+                            <span class="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-red-500 opacity-60"></span>
+                            <div class="w-5 h-5 bg-red-600 rounded-full border-2 border-station-950 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-house-chimney-crack text-[8px] text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pin 4: The Lead Masks Case (Brazil) -->
+                    <div class="absolute top-[63%] left-[38%] group cursor-pointer" onclick="updateRadarSpotlight('The Lead Masks Case', 'Morro do Vintém, Niterói, Brazil (1966). Two technicians found dead in suits and radiation lead masks with cryptic notes.', 'Niterói, Brazil')">
+                        <div class="relative flex items-center justify-center">
+                            <span class="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-emerald-500 opacity-60"></span>
+                            <div class="w-5 h-5 bg-emerald-500 rounded-full border-2 border-station-950 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-mask text-[8px] text-station-950"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pin 5: Flannan Isles Lighthouse -->
+                    <div class="absolute top-[18%] left-[48%] group cursor-pointer" onclick="updateRadarSpotlight('Flannan Isles Lighthouse Disappearance', 'Outer Hebrides, Scotland, 1900. Three lighthouse keepers vanished leaving behind a stopped clock and untouched meals.', 'Scotland, UK')">
+                        <div class="relative flex items-center justify-center">
+                            <div class="w-4 h-4 bg-sky-400 rounded-full border-2 border-station-950 shadow-lg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-station-950 border border-station-800 p-4 rounded-xl font-mono text-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 text-slate-500 uppercase text-[10px]">
+                            <span>SELECTED RADAR PIN:</span>
+                            <span id="radar-location-tag" class="text-amber-400 font-bold">West Milford, NJ</span>
+                        </div>
+                        <h4 id="radar-title" class="text-slate-100 font-bold text-sm mt-0.5 font-cinzel">Clinton Road</h4>
+                        <p id="radar-desc" class="text-slate-400 text-xs mt-1 font-sans font-light">West Milford, New Jersey. A haunted ten-mile stretch of rural road tied to decades of ghost lore and unsolved disappearances.</p>
+                    </div>
+                    <button onclick="openResearchDossier('clintonroad')" class="bg-station-900 hover:bg-station-800 text-amber-400 px-4 py-2 rounded border border-station-700 whitespace-nowrap transition-colors">
+                        Inspect Dossier →
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WOLFCLOUD DISPATCH PORTAL (COMMUNITY SUBMISSIONS & COLD CASE TIPS) -->
+    <section id="dispatch-portal" class="py-20 bg-station-900/80 border-b border-station-800 relative z-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            
+            <div class="bg-station-950 border-2 border-station-700 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden font-mono">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-amber-500 to-emerald-500"></div>
+
+                <div class="flex flex-wrap justify-between items-center border-b border-station-800 pb-4 mb-6 text-xs">
+                    <div class="flex items-center gap-2 text-emerald-400 font-bold">
+                        <i class="fa-solid fa-terminal text-emerald-500"></i> WCS TERMINAL // ENCRYPTED DISPATCH WIRE
+                    </div>
+                    <span class="text-slate-500 text-[10px]">ENCRYPTION: 256-BIT AES LOG</span>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-slate-100">SUBMIT LOCAL LORE OR CASE THEORIES</h3>
+                    <p class="text-slate-400 text-xs font-sans font-light leading-relaxed">
+                        Have a theory or local archive note regarding Clinton Road, Keddie Cabin, Lead Masks Case, or another mystery? Send an encrypted dispatch directly to Sierra Sterling's desk.
+                    </p>
+                </div>
+
+                <form id="dispatch-form" class="space-y-4 crt-terminal bg-black/60 p-5 rounded-xl border border-station-800" onsubmit="submitDispatch(event)">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block text-slate-400 mb-1">CALLSIGN / HANDLE:</label>
+                            <input type="text" id="dispatch-callsign" name="callsign" required placeholder="e.g. Lookout-Sierra-09" class="w-full bg-station-900 border border-station-700 rounded p-2.5 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">LOCATION / REGION:</label>
+                            <input type="text" id="dispatch-location" name="location" placeholder="e.g. Green Mountains, VT" class="w-full bg-station-900 border border-station-700 rounded p-2.5 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500">
+                        </div>
+                    </div>
+
+                    <div class="text-xs">
+                        <label class="block text-slate-400 mb-1">CASE BRIEF / THEORY / DISPATCH NOTES:</label>
+                        <textarea id="dispatch-notes" name="notes" rows="4" required placeholder="Enter case details, coordinates, or witness logs..." class="w-full bg-station-900 border border-station-700 rounded p-3 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500"></textarea>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                        <div id="dispatch-status" class="text-xs text-slate-500 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-slate-600"></span> Ready for transmission...
+                        </div>
+                        <button type="submit" id="dispatch-submit-btn" class="bg-emerald-600 hover:bg-emerald-500 text-black font-bold px-6 py-2.5 rounded text-xs transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/20 w-full sm:w-auto justify-center">
+                            <i class="fa-solid fa-paper-plane"></i> Transmit Payload
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Station Lore Section -->
+    <section id="station" class="py-20 border-b border-station-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5">
+                    <div class="bg-station-900 border border-station-800 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-station-950 border border-station-700 rounded-full flex items-center justify-center p-3 shadow-inner">
+                            <i class="fa-solid fa-wolf-pack-battalion text-4xl text-amber-500"></i>
+                        </div>
+                        <h3 class="font-typewriter text-xl font-bold text-center text-slate-100 mb-1">
+                            STATION DISPATCH LORE
+                        </h3>
+                        <p class="text-slate-400 text-xs text-center font-mono mb-6">
+                            LOOKOUT BASE • ELEVATION 4,200 FT
+                        </p>
+
+                        <div class="space-y-3 font-mono text-xs text-slate-300 border-t border-station-800 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Host:</span>
+                                <span class="text-slate-200">Sierra Sterling</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Focus:</span>
+                                <span class="text-slate-200">Worldwide True Crime & Cold Cases</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Base Station:</span>
+                                <span class="text-slate-200">Secluded PNW Lookout Tower</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Aesthetic:</span>
+                                <span class="text-amber-400">Cinematic 1970s Graphic Novel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex items-center gap-2 text-amber-500 font-mono text-xs uppercase tracking-widest">
+                        <i class="fa-solid fa-tower-observation"></i> About Midnight at Wolfcloud Station
+                    </div>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-slate-100">
+                        WORLDWIDE MYSTERIES BROADCAST FROM OUR SECLUDED LOOKOUT TOWER
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                        <em>Midnight at Wolfcloud Station</em> is an independent true crime docuseries and podcast investigating cold cases, strange disappearances, and unsolved mysteries from across the globe.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed font-light">
+                        Hosted by Sierra Sterling, the channel uses a cinematic, slow-burn 1970s desaturated graphic novel aesthetic. In the lore of the channel, our team broadcasts from a remote lookout station high in the misty Pacific Northwest wilderness.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4 font-mono text-xs">
+                        <a href="https://www.youtube.com/@MidnightatWolfCloudStation" target="_blank" class="bg-red-600 hover:bg-red-500 text-white px-5 py-2.5 rounded flex items-center gap-2 transition-colors">
+                            <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
+                        </a>
+                        <a href="https://open.spotify.com/show/033SFbOhzrHclqSEu3gsoc" target="_blank" class="bg-station-800 hover:bg-station-700 text-slate-200 px-5 py-2.5 rounded border border-station-700 flex items-center gap-2 transition-colors">
+                            <i class="fa-brands fa-spotify text-emerald-400"></i> Follow on Spotify
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-station-950 text-slate-500 font-mono text-xs border-t border-station-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-station-800 pb-8">
+                
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-station-900 border border-station-800 rounded flex items-center justify-center text-amber-500">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <div>
+                        <div class="text-slate-200 font-bold">WOLFCLOUDSTATION.COM</div>
+                        <div class="text-[10px] text-slate-500">Midnight at Wolfcloud Station © 2026</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#shortwave-tuner" class="hover:text-slate-300 transition-colors">Shortwave Tuner</a>
+                    <a href="#upcoming-cases" class="hover:text-slate-300 transition-colors">Upcoming Cases</a>
+                    <a href="#case-board" class="hover:text-slate-300 transition-colors">Evidence Board</a>
+                    <a href="#transmissions" class="hover:text-slate-300 transition-colors">Transmissions</a>
+                    <a href="#case-map" class="hover:text-slate-300 transition-colors">Radar Map</a>
+                    <a href="#dispatch-portal" class="hover:text-slate-300 transition-colors">Dispatch Portal</a>
+                </div>
+
+                <div class="flex items-center gap-4 text-base">
+                    <a href="https://www.youtube.com/@MidnightatWolfCloudStation" target="_blank" class="hover:text-red-400 transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://open.spotify.com/show/033SFbOhzrHclqSEu3gsoc" target="_blank" class="hover:text-emerald-400 transition-colors" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+                    <a href="https://anchor.fm/s/1151d3344/podcast/rss" target="_blank" class="hover:text-amber-400 transition-colors" title="RSS Feed"><i class="fa-solid fa-rss"></i></a>
+                </div>
+
+            </div>
+
+            <div class="pt-6 text-center text-[11px] text-slate-600 max-w-3xl mx-auto font-sans font-light">
+                Midnight at Wolfcloud Station is an independent true crime docuseries and podcast. Case details are compiled from historical documents, primary sources, and public archives.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Universal Dossier / Evidence Modal Inspector -->
+    <div id="dossier-modal" class="fixed inset-0 bg-station-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-station-900 border border-station-700 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 shadow-2xl relative font-sans">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="modal-body" class="space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* 1. Drifting Mist Canvas Particle System */
+            const mistCanvas = document.getElementById('mist-canvas');
+            if (mistCanvas) {
+                const ctx = mistCanvas.getContext('2d');
+                let width, height;
+                let particles = [];
+
+                function resizeMistCanvas() {
+                    width = mistCanvas.width = mistCanvas.offsetWidth;
+                    height = mistCanvas.height = mistCanvas.offsetHeight;
+                }
+                window.addEventListener('resize', resizeMistCanvas);
+                resizeMistCanvas();
+
+                class MistParticle {
+                    constructor() {
+                        this.reset(true);
+                    }
+                    reset(initial = false) {
+                        this.x = initial ? Math.random() * width : -120;
+                        this.y = Math.random() * height;
+                        this.radius = Math.random() * 90 + 45;
+                        this.vx = Math.random() * 0.45 + 0.15;
+                        this.alpha = Math.random() * 0.22 + 0.05;
+                    }
+                    update() {
+                        this.x += this.vx;
+                        if (this.x - this.radius > width) {
+                            this.reset(false);
+                        }
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                        grad.addColorStop(0, `rgba(148, 163, 184, ${this.alpha})`);
+                        grad.addColorStop(1, 'rgba(148, 163, 184, 0)');
+                        ctx.fillStyle = grad;
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                for (let i = 0; i < 35; i++) {
+                    particles.push(new MistParticle());
+                }
+
+                function animateMist() {
+                    ctx.clearRect(0, 0, width, height);
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+                    requestAnimationFrame(animateMist);
+                }
+                animateMist();
+            }
+
+            /* 2. Mobile Menu Toggle */
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn?.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            /* 3. Shortwave Radio Tuner Engine */
+            let audioCtx = null;
+            let noiseNode = null;
+            let noiseFilter = null;
+            let noiseGain = null;
+            let morseOsc = null;
+            let morseGain = null;
+            let radioPowered = false;
+            let isMuted = false;
+
+            const radioPowerBtn = document.getElementById('radio-power-btn');
+            const radioPowerLed = document.getElementById('radio-power-led');
+            const radioPowerLabel = document.getElementById('radio-power-label');
+            const radioFreqSlider = document.getElementById('radio-freq-slider');
+            const freqDisplay = document.getElementById('freq-display');
+            const freqStationName = document.getElementById('freq-station-name');
+            const freqStationDesc = document.getElementById('freq-station-desc');
+            const vuNeedleArm = document.getElementById('vu-needle-arm');
+            const signalQualityBadge = document.getElementById('signal-quality-badge');
+            const radioCarrierStatus = document.getElementById('radio-carrier-status');
+            const radioAudioText = document.getElementById('radio-audio-text');
+            const radioAudioIcon = document.getElementById('radio-audio-icon');
+
+            const radioStations = [
+                { freq: 4.20, name: "WCS Base Beacon (4,200 ft)", desc: "Pacific Northwest station lookout beacon. Sierra Sterling live telemetry loop.", morse: "... - . .-. .-.. .. -. --. " },
+                { freq: 11.85, name: "Niterói Shortwave Relay", desc: "Brazilian coast signal. Encoded telemetry related to the 1966 Lead Masks discovery.", morse: ".-.. . .- -.. -- .- ... -.- ... " },
+                { freq: 14.30, name: "Sierra Nevada Mountain Relay", desc: "Keddie Resort Cabin 28 forest emergency wire log.", morse: "-.- . -.. -.. .. . " },
+                { freq: 18.60, name: "Clinton Road Relay", desc: "West Milford, New Jersey backwoods signal intercept.", morse: "-.-. .-.. .. -. - --- -. " }
+            ];
+
+            function initWebAudio() {
+                if (audioCtx) return;
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+
+                const bufferSize = audioCtx.sampleRate * 2;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const output = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+
+                noiseNode = audioCtx.createBufferSource();
+                noiseNode.buffer = buffer;
+                noiseNode.loop = true;
+
+                noiseFilter = audioCtx.createBiquadFilter();
+                noiseFilter.type = 'bandpass';
+                noiseFilter.frequency.value = 1000;
+                noiseFilter.Q.value = 3;
+
+                noiseGain = audioCtx.createGain();
+                noiseGain.gain.value = 0;
+
+                noiseNode.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(audioCtx.destination);
+                noiseNode.start();
+
+                morseOsc = audioCtx.createOscillator();
+                morseOsc.type = 'sine';
+                morseOsc.frequency.value = 750;
+
+                morseGain = audioCtx.createGain();
+                morseGain.gain.value = 0;
+
+                morseOsc.connect(morseGain);
+                morseGain.connect(audioCtx.destination);
+                morseOsc.start();
+            }
+
+            function updateRadioAudio(currentFreq) {
+                if (!radioPowered || isMuted || !audioCtx) return;
+
+                let closest = null;
+                let minDiff = 999;
+
+                radioStations.forEach(st => {
+                    const diff = Math.abs(st.freq - currentFreq);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closest = st;
+                    }
+                });
+
+                const proximity = Math.max(0, 1 - (minDiff / 0.45));
+
+                if (noiseGain) {
+                    const staticVol = Math.max(0.02, 0.18 - (proximity * 0.15));
+                    noiseGain.gain.setTargetAtTime(staticVol, audioCtx.currentTime, 0.05);
+                    noiseFilter.frequency.setTargetAtTime(800 + (currentFreq * 60), audioCtx.currentTime, 0.05);
+                }
+
+                if (morseGain) {
+                    const morseVol = proximity * 0.12;
+                    morseGain.gain.setTargetAtTime(morseVol, audioCtx.currentTime, 0.05);
+                }
+
+                const needleAngle = -45 + (proximity * 85) + (Math.random() * 4 - 2);
+                vuNeedleArm.style.transform = `rotate(${needleAngle}deg)`;
+
+                if (proximity > 0.8) {
+                    freqStationName.textContent = closest.name;
+                    freqStationDesc.textContent = closest.desc;
+                    signalQualityBadge.textContent = "CARRIER LOCKED";
+                    signalQualityBadge.className = "text-emerald-400 font-bold text-[10px] bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded animate-pulse";
+                    radioCarrierStatus.textContent = "SIGNAL CLEAR";
+                    radioCarrierStatus.className = "text-emerald-400 font-bold";
+                    radioAudioText.textContent = `Intercepting research signal for ${closest.name}...`;
+                    radioAudioIcon.className = "fa-solid fa-tower-broadcast text-emerald-400 animate-pulse";
+                } else if (proximity > 0.2) {
+                    freqStationName.textContent = "Faint Shortwave Carrier...";
+                    freqStationDesc.textContent = "Heterodyne signal interference detected. Tune finer to lock frequency.";
+                    signalQualityBadge.textContent = "WEAK SIGNAL";
+                    signalQualityBadge.className = "text-amber-400 text-[10px] bg-amber-950 border border-amber-800 px-2 py-0.5 rounded";
+                    radioCarrierStatus.textContent = "INTERFERENCE";
+                    radioCarrierStatus.className = "text-amber-400";
+                    radioAudioText.textContent = "Faint carrier tone detected through atmospheric noise...";
+                    radioAudioIcon.className = "fa-solid fa-radio text-amber-500";
+                } else {
+                    freqStationName.textContent = "Atmospheric Static (White Noise)";
+                    freqStationDesc.textContent = "No primary station carrier logged on this frequency band.";
+                    signalQualityBadge.textContent = "STATIC";
+                    signalQualityBadge.className = "text-slate-500 text-[10px] bg-station-900 border border-station-800 px-2 py-0.5 rounded";
+                    radioCarrierStatus.textContent = "SEARCHING...";
+                    radioCarrierStatus.className = "text-slate-500";
+                    radioAudioText.textContent = "Receiving open band atmospheric static sweep...";
+                    radioAudioIcon.className = "fa-solid fa-wave-square text-slate-500";
+                }
+            }
+
+            radioPowerBtn?.addEventListener('click', () => {
+                initWebAudio();
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                radioPowered = !radioPowered;
+                if (radioPowered) {
+                    radioPowerLed.className = "w-2 h-2 rounded-full bg-emerald-500 animate-ping";
+                    radioPowerLabel.textContent = "POWER: ON";
+                    radioPowerBtn.className = "bg-emerald-950 hover:bg-emerald-900 border border-emerald-700 text-emerald-400 px-3.5 py-1.5 rounded flex items-center gap-2 font-bold transition-all shadow";
+                    updateRadioAudio(parseFloat(radioFreqSlider.value));
+                } else {
+                    radioPowerLed.className = "w-2 h-2 rounded-full bg-red-600";
+                    radioPowerLabel.textContent = "POWER: OFF";
+                    radioPowerBtn.className = "bg-red-950 hover:bg-red-900 border border-red-700 text-red-400 px-3.5 py-1.5 rounded flex items-center gap-2 font-bold transition-all shadow";
+                    if (noiseGain) noiseGain.gain.value = 0;
+                    if (morseGain) morseGain.gain.value = 0;
+                    vuNeedleArm.style.transform = `rotate(-45deg)`;
+                    radioCarrierStatus.textContent = "DISCONNECTED";
+                    radioCarrierStatus.className = "text-amber-400";
+                    radioAudioText.textContent = "Receiver power disabled.";
+                    radioAudioIcon.className = "fa-solid fa-volume-xmark text-slate-500";
+                }
+            });
+
+            radioFreqSlider?.addEventListener('input', (e) => {
+                const val = parseFloat(e.target.value).toFixed(2);
+                freqDisplay.textContent = val < 10 ? `0${val}` : `${val}`;
+                updateRadioAudio(parseFloat(val));
+            });
+
+            document.getElementById('radio-mute-btn')?.addEventListener('click', () => {
+                isMuted = !isMuted;
+                if (isMuted) {
+                    if (noiseGain) noiseGain.gain.value = 0;
+                    if (morseGain) morseGain.gain.value = 0;
+                    document.getElementById('radio-mute-btn').textContent = "Unmute Static";
+                } else {
+                    document.getElementById('radio-mute-btn').textContent = "Mute Static";
+                    updateRadioAudio(parseFloat(radioFreqSlider.value));
+                }
+            });
+
+            window.setRadioFreq = function(freq) {
+                radioFreqSlider.value = freq;
+                const val = freq.toFixed(2);
+                freqDisplay.textContent = val < 10 ? `0${val}` : `${val}`;
+                if (!radioPowered) {
+                    radioPowerBtn.click();
+                } else {
+                    updateRadioAudio(freq);
+                }
+            };
+
+            /* 4. Evidence Corkboard Modal Inspector */
+            const evidenceDB = {
+                leadmask_note: {
+                    title: "Item #LM-1966-A: The Cryptic Notebook",
+                    subtitle: "Morro do Vintém, Niterói, Brazil",
+                    desc: "Recovered from the pockets of Manoel Pereira da Cruz and Miguel José Viana in August 1966. The handwritten note instructed: '16:30 estar no local determinado. 18:30 engolir capsulas, apos efeito proteger metais aguardar sinal mascara' (16:30 be at specified location. 18:30 swallow capsules, after effect protect metals wait for signal mask). Toxicological tests were inconclusive due to delayed organ analysis."
+                },
+                keddie_hammer: {
+                    title: "Item #KD-1981-A: The Recovered Claw Hammer",
+                    subtitle: "Cabin 28, Keddie, California",
+                    desc: "In 2016, a claw hammer was discovered in a local pond, matching descriptions of a weapon missing since April 1981. Forensic re-examination brought renewed focus to suspect interview transcripts and unverified telephone recordings."
+                },
+                bennington_map: {
+                    title: "Item #BT-1945-A: Glastenbury Mountain Disappearance Map",
+                    subtitle: "Bennington County, Vermont",
+                    desc: "Between 1945 and 1950, five distinct vanishings occurred in this densely forested region: Middie Rivers (1945), Paula Welden (1946), James Tetford (1949, who vanished from a moving bus), Paul Jepson (1950), and Frieda Langer (1950, whose body was found months later in an area previously thoroughly searched)."
+                },
+                yubacar: {
+                    title: "Item #YB-1978-A: 1969 Mercury Monte Carlo",
+                    subtitle: "Plumas National Forest Mountain Road",
+                    desc: "Found February 28, 1978, at the snow line in Plumas National Forest. The vehicle was undamaged, contained ample gasoline, and started on the first turn of the ignition."
+                },
+                trailer: {
+                    title: "Item #YB-1978-B: Forest Service Trailer Log",
+                    subtitle: "19.5 Miles from Abandoned Vehicle",
+                    desc: "Ted Weiher's body was discovered inside an unheated USFS trailer wrapped in sheet layers. C-ration cans had been opened with a military P-38 opener, but propane tanks and dry matches right inside the cabin were left completely untouched."
+                },
+                dispatch: {
+                    title: "Signal Log #4200: Shortwave Anomaly",
+                    subtitle: "Pacific Northwest Lookout Archives",
+                    desc: "Archival audio tape recording intercepted over 14.30 MHz. Faint voice dispatches matching local storm frequencies logged during the winter of 1978 in the Sierra Nevada mountains."
+                }
+            };
+
+            const researchDossiers = {
+                clintonroad: {
+                    title: "Clinton Road",
+                    location: "West Milford, Passaic County, New Jersey, USA",
+                    period: "Ongoing – Legend & Lore",
+                    badge: "RESEARCH IN PROGRESS",
+                    badgeColor: "amber",
+                    content: `
+                        <p><strong>The Location:</strong> A roughly ten-mile stretch of dark, winding rural road through the Passaic County woods, widely cited as one of the most haunted roads in America and a long-running magnet for local legend and true crime lore.</p>
+
+                        <p><strong>Notable Lore & Incidents:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                            <li><strong>The Ghost Boy of Dead Man's Curve:</strong> Drivers report a phantom child near an old stone bridge, said to toss coins into the creek below in tribute to avoid misfortune.</li>
+                            <li><strong>Clinton Road Castle:</strong> An abandoned nearby estate long rumored (without evidence) to be tied to occult gatherings, feeding decades of local rumor.</li>
+                            <li><strong>Phantom Vehicles:</strong> Numerous reports of a mysterious black pickup truck and other vehicles appearing and vanishing on the road at night.</li>
+                            <li><strong>Unsolved Disappearances:</strong> Several missing-persons cases connected to the surrounding woods and reservoirs remain unresolved.</li>
+                        </ul>
+
+                        <div class="bg-station-950 p-3 rounded-lg border border-station-800 font-mono text-xs text-amber-400">
+                            <strong>RESEARCH STATUS:</strong> Compiling local police reports, decades of eyewitness accounts, and site history ahead of a scouting trip.
+                        </div>
+                    `
+                },
+                keddie: {
+                    title: "The Keddie Cabin Murders",
+                    location: "Cabin 28, Keddie Resort, Plumas County, California, USA",
+                    period: "April 11 – 12, 1981",
+                    badge: "EVIDENCE COMPILATION",
+                    badgeColor: "red",
+                    content: `
+                        <p><strong>The Incident:</strong> On the morning of April 12, 1981, 14-year-old Sheila Sharp returned home to Cabin 28 in the quiet resort community of Keddie, California, to discover a horrifying scene in the living room.</p>
+                        
+                        <p><strong>The Victims:</strong> Her mother Glenna "Sue" Sharp (36), brother John (15), and John's friend Dana Wingate (17) were found bound with electrical wire and tape, severely beaten with claw hammers and stabbed with steak knives. Sheila's 12-year-old sister, Tina Sharp, was missing from the cabin.</p>
+
+                        <p><strong>Baffling Factors:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                            <li>Three younger children sleeping in an adjacent bedroom were left entirely unharmed and claimed to have slept through the attack.</li>
+                            <li>No intruder alarm or struggle noises were reported by close neighboring cabins in the quiet woods.</li>
+                            <li>Tina Sharp's skull fragments were discovered in 1984 near Feather Falls, 30 miles away, following an anonymous 911 tip.</li>
+                        </ul>
+
+                        <div class="bg-station-950 p-3 rounded-lg border border-station-800 font-mono text-xs text-red-400">
+                            <strong>RESEARCH STATUS:</strong> Analyzing recovered suspect audio tapes, 2016 hammer recovery evidence, and motive theories.
+                        </div>
+                    `
+                },
+                leadmasks: {
+                    title: "The Lead Masks Case (As Máscaras de Chumbo)",
+                    location: "Morro do Vintém, Niterói, Rio de Janeiro, Brazil",
+                    period: "August 17 – 20, 1966",
+                    badge: "ARCHIVE TRANSLATION",
+                    badgeColor: "emerald",
+                    content: `
+                        <p><strong>The Incident:</strong> On August 20, 1966, a youth flying a kite discovered two deceased men lying side by side on a steep, grassy hillside overlooking Niterói, Brazil.</p>
+                        
+                        <p><strong>The Victims:</strong> Manoel Pereira da Cruz and Miguel José Viana, two radiotechnicians from Campos dos Goytacazes, were found dressed in formal suits and waterproof raincoats, wearing heavy handmade lead eye masks.</p>
+
+                        <p><strong>Baffling Evidence:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                            <li>An empty water bottle and a notebook containing spiritual/scientific instructions written in Portuguese.</li>
+                            <li>The lead masks were designed to protect eyes from intense radiation or glare.</li>
+                            <li>No visible signs of trauma or external violence were found on either body.</li>
+                            <li>Witnesses placed both men in a local bar purchasing water, where Miguel appeared nervous and kept checking his watch.</li>
+                        </ul>
+
+                        <div class="bg-station-950 p-3 rounded-lg border border-station-800 font-mono text-xs text-emerald-400">
+                            <strong>RESEARCH STATUS:</strong> Translating primary Brazilian police logs, spiritist movement interviews, and toxicology reports.
+                        </div>
+                    `
+                },
+                springfieldthree: {
+                    title: "The Springfield Three",
+                    location: "1717 E. Delmar Street, Springfield, Missouri, USA",
+                    period: "June 7, 1992",
+                    badge: "EVIDENCE COMPILATION",
+                    badgeColor: "red",
+                    content: `
+                        <p><strong>The Incident:</strong> Sometime after midnight on June 7, 1992, Stacy McCall arrived back at the Delmar Street home of Sherrill Levitt after a graduation party to spend the night with Sherrill's daughter, Suzanne Streeter. By morning, all three women had vanished.</p>
+
+                        <p><strong>The Victims:</strong> Sherrill Levitt (47), her daughter Suzanne Streeter (19), and Suzanne's friend Stacy McCall (18) were never seen again. No bodies, and no confirmed trace of any of the three, have ever been recovered.</p>
+
+                        <p><strong>Baffling Factors:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                            <li>The women's purses, keys, and both of Stacy's and Suzanne's cars were left behind at the house.</li>
+                            <li>The porch light fixture was found shattered and lying on the ground outside, with no explanation.</li>
+                            <li>There were no signs of forced entry or struggle inside the home.</li>
+                            <li>A $50,000+ reward and dozens of persons of interest over three decades have yielded no confirmed answers.</li>
+                        </ul>
+
+                        <div class="bg-station-950 p-3 rounded-lg border border-station-800 font-mono text-xs text-red-400">
+                            <strong>RESEARCH STATUS:</strong> Compiling original case files, tip-line leads, and persons-of-interest timelines ahead of scripting.
+                        </div>
+                    `
+                }
+            };
+
+            window.openEvidenceInspector = function(key) {
+                const data = evidenceDB[key];
+                if (!data) return;
+
+                const modal = document.getElementById('dossier-modal');
+                const modalBody = document.getElementById('modal-body');
+
+                modalBody.innerHTML = `
+                    <div class="border-b border-station-800 pb-3">
+                        <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest"><i class="fa-solid fa-thumbtack mr-1"></i> Classified Evidence File</span>
+                        <h3 class="font-cinzel text-2xl font-bold text-white mt-1">${data.title}</h3>
+                        <div class="font-mono text-xs text-slate-400 mt-1"><i class="fa-solid fa-location-dot text-amber-500 mr-1.5"></i> ${data.subtitle}</div>
+                    </div>
+                    <div class="text-slate-300 text-sm leading-relaxed font-light font-sans space-y-3 py-2">
+                        <p>${data.desc}</p>
+                    </div>
+                    <div class="bg-station-950 p-4 rounded-xl border border-station-800 font-mono text-xs space-y-1">
+                        <div class="text-amber-400 font-bold">STATION LOG STATUS:</div>
+                        <div class="text-slate-400">• Verified by Sierra Sterling (Lookout Tower HQ)</div>
+                        <div class="text-slate-400">• Related Case Dossier Active</div>
+                    </div>
+                    <div class="pt-2 flex justify-end gap-3 font-mono text-xs">
+                        <button onclick="document.getElementById('dossier-modal').classList.add('hidden')" class="bg-amber-500 text-station-950 font-bold px-4 py-2 rounded">
+                            Close File
+                        </button>
+                    </div>
+                `;
+
+                modal.classList.remove('hidden');
+            };
+
+            window.openResearchDossier = function(caseKey) {
+                const data = researchDossiers[caseKey];
+                if (!data) return;
+
+                const modal = document.getElementById('dossier-modal');
+                const modalBody = document.getElementById('modal-body');
+
+                modalBody.innerHTML = `
+                    <div class="border-b border-station-800 pb-3">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest"><i class="fa-solid fa-compass mr-1"></i> Upcoming Research Dossier</span>
+                            <span class="bg-${data.badgeColor}-950 border border-${data.badgeColor}-800 text-${data.badgeColor}-400 font-mono text-[10px] px-2.5 py-0.5 rounded font-bold">${data.badge}</span>
+                        </div>
+                        <h3 class="font-cinzel text-2xl font-bold text-white leading-snug">${data.title}</h3>
+                        <div class="font-mono text-xs text-slate-400 mt-1">
+                            <i class="fa-solid fa-location-dot text-amber-500 mr-1.5"></i> ${data.location}
+                        </div>
+                    </div>
+
+                    <div class="text-slate-300 text-sm leading-relaxed font-light font-sans space-y-4 max-h-80 overflow-y-auto pr-2 py-2">
+                        ${data.content}
+                    </div>
+
+                    <div class="pt-2 flex justify-end gap-3 font-mono text-xs">
+                        <button onclick="document.getElementById('dossier-modal').classList.add('hidden')" class="bg-station-800 hover:bg-station-700 text-slate-300 px-4 py-2 rounded">
+                            Close Dossier
+                        </button>
+                        <a href="https://www.youtube.com/@MidnightatWolfCloudStation" target="_blank" class="bg-red-600 hover:bg-red-500 text-white font-bold px-4 py-2 rounded flex items-center gap-1.5">
+                            <i class="fa-brands fa-youtube"></i> Subscribe for Release
+                        </a>
+                    </div>
+                `;
+
+                modal.classList.remove('hidden');
+            };
+
+            /* 5. Dispatch Submission Form logic */
+            const DISPATCH_ENDPOINT = 'https://formspree.io/f/maqrdrln';
+
+            window.submitDispatch = async function(e) {
+                e.preventDefault();
+                const form = document.getElementById('dispatch-form');
+                const callsign = document.getElementById('dispatch-callsign').value;
+                const status = document.getElementById('dispatch-status');
+                const btn = document.getElementById('dispatch-submit-btn');
+
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Encrypting...`;
+                status.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span> Transmitting encrypted payload to Sierra's desk...`;
+
+                try {
+                    const res = await fetch(DISPATCH_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: new FormData(form)
+                    });
+
+                    if (!res.ok) throw new Error(`Dispatch endpoint responded ${res.status}`);
+
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-check"></i> Transmission Sent`;
+                    status.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Transmission received! Callsign [${callsign}] logged on WCS station wire.`;
+                    form.reset();
+                } catch (err) {
+                    console.warn('Dispatch submission failed:', err);
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Transmit Payload`;
+                    status.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Transmission failed. Signal lost — please try again.`;
+                }
+            };
+
+            /* 6. RSS Podcast Audio Player & Feed Integration */
+            const RSS_FEED_URL = 'https://anchor.fm/s/1151d3344/podcast/rss';
+
+            let feedItems = [];
+            let currentTrackIndex = -1;
+            let currentPlaybackSpeed = 1.0;
+
+            const audioEl = document.getElementById('station-audio');
+            const playerPlayBtn = document.getElementById('player-play-btn');
+            const playerPlayIcon = document.getElementById('player-play-icon');
+            const playerSeekBar = document.getElementById('player-seek-bar');
+            const playerVolumeBar = document.getElementById('player-volume-bar');
+            const playerCurrentTime = document.getElementById('player-current-time');
+            const playerTotalTime = document.getElementById('player-total-time');
+            const playerTitle = document.getElementById('player-title');
+            const playerDesc = document.getElementById('player-desc');
+            const playerDate = document.getElementById('player-date');
+            const playerArtwork = document.getElementById('player-artwork');
+            const playerArtworkFallback = document.getElementById('player-artwork-fallback');
+            const playerSpeedBtn = document.getElementById('player-speed-btn');
+            const playerSkipBack = document.getElementById('player-skip-back');
+            const playerSkipForward = document.getElementById('player-skip-forward');
+
+            function formatTimeString(seconds) {
+                if (isNaN(seconds) || seconds < 0) return "00:00";
+                const m = Math.floor(seconds / 60);
+                const s = Math.floor(seconds % 60);
+                return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+            }
+
+            function cleanHTML(str) {
+                if (!str) return '';
+                return str.replace(/<[^>]*>?/gm, '').trim();
+            }
+
+            const RSS_CACHE_KEY = 'wcs_rss_cache_v1';
+            const RSS_CACHE_MAX_AGE_MS = 15 * 60 * 1000; // 15 min
+
+            function parseFeedXML(xmlText) {
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, 'text/xml');
+                if (xml.querySelector('parsererror')) return null;
+
+                const items = Array.from(xml.getElementsByTagName('item'));
+                if (items.length === 0) return null;
+
+                return items.map(item => {
+                    const enclosureEl = item.getElementsByTagName('enclosure')[0] || item.querySelector('enclosure');
+                    const itunesImage = item.getElementsByTagNameNS('*', 'image')[0];
+
+                    return {
+                        title: item.getElementsByTagName('title')[0]?.textContent?.trim() || 'Untitled Transmission',
+                        pubDate: item.getElementsByTagName('pubDate')[0]?.textContent?.trim() || '',
+                        description: item.getElementsByTagName('description')[0]?.textContent?.trim()
+                            || item.getElementsByTagNameNS('*', 'summary')[0]?.textContent?.trim()
+                            || '',
+                        enclosure: { link: enclosureEl?.getAttribute('url') || '' },
+                        thumbnail: itunesImage?.getAttribute('href') || ''
+                    };
+                });
+            }
+
+            function readRSSCache() {
+                try {
+                    const raw = localStorage.getItem(RSS_CACHE_KEY);
+                    if (!raw) return null;
+                    const cached = JSON.parse(raw);
+                    if (!cached.items || !cached.items.length) return null;
+                    return cached;
+                } catch {
+                    return null;
+                }
+            }
+
+            function writeRSSCache(items) {
+                try {
+                    localStorage.setItem(RSS_CACHE_KEY, JSON.stringify({ items, ts: Date.now() }));
+                } catch {}
+            }
+
+            async function fetchStationRSS() {
+                // Instant paint from cache (if present) while we refresh in the background.
+                const cached = readRSSCache();
+                if (cached) {
+                    feedItems = cached.items;
+                    renderFeedData();
+                }
+
+                try {
+                    const res = await fetch(`https://proxy.cors.sh/${RSS_FEED_URL}`);
+                    if (!res.ok) throw new Error(`Proxy responded ${res.status}`);
+                    const xmlText = await res.text();
+                    const items = parseFeedXML(xmlText);
+                    if (!items) throw new Error('No episodes found in feed');
+
+                    feedItems = items;
+                    writeRSSCache(items);
+                    renderFeedData();
+                } catch (err) {
+                    console.warn("RSS fetch/parse issue", err);
+                    if (!cached) fallbackDOMParse();
+                }
+            }
+
+            async function fallbackDOMParse() {
+                feedItems = [
+                    {
+                        title: "The Silent Light: What Happened at Eilean Mòr?",
+                        pubDate: "2026-07-24",
+                        description: "Outer Hebrides, Scotland, December 1900. Three experienced lighthouse keepers vanished from the remote Flannan Isles light station, leaving behind untouched meals, a stopped clock, and locked iron doors.",
+                        enclosure: { link: "" },
+                        thumbnail: ""
+                    },
+                    {
+                        title: "The Baffling Case of the Yuba County Five",
+                        pubDate: "2026-07-20",
+                        description: "Five young men vanished into the snowy hills of Plumas National Forest in 1978. Decades later, the baffling circumstances surrounding their route and abandoned car remain unsolved.",
+                        enclosure: { link: "" },
+                        thumbnail: ""
+                    },
+                    {
+                        title: "The Frequency is Open",
+                        pubDate: "2026-07-20",
+                        description: "Somewhere beyond Mile Marker 47... where the asphalt runs out and the tree line swallows the sky... welcoming listeners to Midnight at Wolfcloud Station.",
+                        enclosure: { link: "" },
+                        thumbnail: ""
+                    }
+                ];
+                renderFeedData();
+            }
+
+            function renderFeedData() {
+                const countText = `${feedItems.length} Published Transmissions`;
+                document.getElementById('transmissions-count').textContent = countText;
+                document.getElementById('rss-list-count').textContent = countText;
+
+                renderTransmissionsGrid(feedItems);
+                renderRSSList(feedItems);
+                selectEpisode(0, false);
+            }
+
+            function renderTransmissionsGrid(items) {
+                const container = document.getElementById('transmissions-container');
+                if (!container) return;
+                container.innerHTML = '';
+
+                items.forEach((item, index) => {
+                    const cleanText = cleanHTML(item.description);
+                    const pubDateFormatted = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Official Log';
+
+                    const card = document.createElement('article');
+                    card.className = "bg-station-900 border border-station-800 hover:border-amber-500/60 rounded-xl overflow-hidden flex flex-col justify-between transition-all hover:-translate-y-1 shadow-lg group";
+
+                    card.innerHTML = `
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3 font-mono text-[10px]">
+                                <span class="bg-amber-950/80 border border-amber-900/60 text-amber-400 px-2.5 py-0.5 rounded uppercase font-bold">UNSOLVED</span>
+                                <span class="text-slate-500"><i class="fa-solid fa-calendar mr-1"></i>${pubDateFormatted}</span>
+                            </div>
+
+                            <h3 class="font-cinzel text-lg font-bold text-slate-100 group-hover:text-amber-400 transition-colors mb-2 leading-snug">
+                                ${item.title}
+                            </h3>
+
+                            <p class="text-slate-400 text-xs line-clamp-3 mb-4 leading-relaxed font-light">
+                                ${cleanText}
+                            </p>
+                        </div>
+
+                        <div class="px-6 py-3.5 bg-station-950 border-t border-station-800 flex items-center justify-between font-mono text-xs">
+                            <button onclick="playTrackFromCard(${index})" class="text-slate-300 hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-play text-amber-500 text-[10px]"></i> Stream Audio
+                            </button>
+                            <button onclick="openDossierModal(${index})" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1">
+                                Inspect File <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+
+            function renderRSSList(items) {
+                const listEl = document.getElementById('rss-feed-list');
+                if (!listEl) return;
+                listEl.innerHTML = '';
+
+                items.forEach((item, index) => {
+                    const pubDateStr = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+                    const row = document.createElement('div');
+                    row.className = `p-3 rounded-lg border transition-all cursor-pointer flex items-center justify-between gap-4 font-mono text-xs ${index === currentTrackIndex ? 'bg-station-800 border-amber-500/80 text-white' : 'bg-station-900/60 border-station-800 hover:border-station-700 text-slate-300'}`;
+
+                    row.innerHTML = `
+                        <div class="flex items-center gap-3 min-w-0 flex-1">
+                            <span class="w-6 h-6 rounded-full bg-station-950 text-amber-400 flex items-center justify-center text-[10px] flex-shrink-0">
+                                <i class="fa-solid ${index === currentTrackIndex && !audioEl.paused ? 'fa-pause' : 'fa-play'}"></i>
+                            </span>
+                            <span class="truncate font-bold font-cinzel text-xs">${item.title}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 flex-shrink-0">${pubDateStr}</span>
+                    `;
+
+                    row.addEventListener('click', () => {
+                        selectEpisode(index, true);
+                    });
+
+                    listEl.appendChild(row);
+                });
+            }
+
+            function selectEpisode(index, autoPlay = true) {
+                if (!feedItems[index]) return;
+                currentTrackIndex = index;
+                const track = feedItems[index];
+
+                const audioUrl = track.enclosure?.link || track.guid || '';
+                if (audioUrl) {
+                    audioEl.src = audioUrl;
+                }
+
+                playerTitle.textContent = track.title;
+                playerDesc.textContent = cleanHTML(track.description);
+                playerDate.textContent = track.pubDate ? `BROADCAST LOG: ${new Date(track.pubDate).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}` : 'OFFICIAL DISPATCH';
+
+                if (track.thumbnail) {
+                    playerArtwork.src = track.thumbnail;
+                    playerArtwork.classList.remove('hidden');
+                    playerArtworkFallback.classList.add('hidden');
+                } else {
+                    playerArtwork.classList.add('hidden');
+                    playerArtworkFallback.classList.remove('hidden');
+                }
+
+                renderRSSList(feedItems);
+
+                if (autoPlay && audioUrl) {
+                    audioEl.play().then(() => updatePlayIcon(true)).catch(e => console.log('Autoplay handled:', e));
+                }
+            }
+
+            function updatePlayIcon(isPlaying) {
+                if (isPlaying) {
+                    playerPlayIcon.className = 'fa-solid fa-pause ml-0';
+                    playerPlayBtn.classList.add('bg-red-600', 'text-white');
+                    playerPlayBtn.classList.remove('bg-amber-500');
+                } else {
+                    playerPlayIcon.className = 'fa-solid fa-play ml-0.5';
+                    playerPlayBtn.classList.remove('bg-red-600', 'text-white');
+                    playerPlayBtn.classList.add('bg-amber-500');
+                }
+            }
+
+            playerPlayBtn?.addEventListener('click', () => {
+                if (audioEl.paused) {
+                    audioEl.play();
+                    updatePlayIcon(true);
+                } else {
+                    audioEl.pause();
+                    updatePlayIcon(false);
+                }
+            });
+
+            audioEl?.addEventListener('timeupdate', () => {
+                if (audioEl.duration) {
+                    const pct = (audioEl.currentTime / audioEl.duration) * 100;
+                    playerSeekBar.value = pct;
+                    playerCurrentTime.textContent = formatTimeString(audioEl.currentTime);
+                    playerTotalTime.textContent = formatTimeString(audioEl.duration);
+                }
+            });
+
+            playerSeekBar?.addEventListener('input', (e) => {
+                if (audioEl.duration) {
+                    audioEl.currentTime = (e.target.value / 100) * audioEl.duration;
+                }
+            });
+
+            playerVolumeBar?.addEventListener('input', (e) => {
+                audioEl.volume = e.target.value / 100;
+            });
+
+            playerSkipBack?.addEventListener('click', () => {
+                audioEl.currentTime = Math.max(0, audioEl.currentTime - 10);
+            });
+
+            playerSkipForward?.addEventListener('click', () => {
+                if (audioEl.duration) {
+                    audioEl.currentTime = Math.min(audioEl.duration, audioEl.currentTime + 30);
+                }
+            });
+
+            playerSpeedBtn?.addEventListener('click', () => {
+                const speeds = [1.0, 1.25, 1.5, 2.0];
+                const curIdx = speeds.indexOf(currentPlaybackSpeed);
+                currentPlaybackSpeed = speeds[(curIdx + 1) % speeds.length];
+                audioEl.playbackRate = currentPlaybackSpeed;
+                playerSpeedBtn.textContent = `${currentPlaybackSpeed.toFixed(1)}x`;
+            });
+
+            window.playTrackFromCard = function(index) {
+                selectEpisode(index, true);
+                location.href = '#podcast-rss';
+            };
+
+            window.openDossierModal = function(index) {
+                const item = feedItems[index];
+                if (!item) return;
+
+                const modal = document.getElementById('dossier-modal');
+                const modalBody = document.getElementById('modal-body');
+                const pubDateStr = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-US', { dateStyle: 'full' }) : 'Official Log';
+
+                modalBody.innerHTML = `
+                    <div class="border-b border-station-800 pb-3">
+                        <span class="font-mono text-xs text-red-500 font-bold uppercase tracking-widest"><i class="fa-solid fa-folder-open mr-1"></i> Official Dossier Log</span>
+                        <h3 class="font-cinzel text-2xl font-bold text-white mt-1 leading-snug">${item.title}</h3>
+                        <div class="font-mono text-xs text-slate-400 mt-2"><i class="fa-solid fa-calendar text-amber-500 mr-1.5"></i> Broadcast Date: ${pubDateStr}</div>
+                    </div>
+                    <div class="text-slate-300 text-sm leading-relaxed font-light font-sans max-h-72 overflow-y-auto pr-2 space-y-3">
+                        <p>${cleanHTML(item.description)}</p>
+                    </div>
+                    <div class="pt-2 flex justify-end gap-3 font-mono text-xs">
+                        <button onclick="document.getElementById('dossier-modal').classList.add('hidden')" class="bg-station-800 hover:bg-station-700 text-slate-300 px-4 py-2 rounded">
+                            Close File
+                        </button>
+                        <button onclick="document.getElementById('dossier-modal').classList.add('hidden'); playTrackFromCard(${index});" class="bg-amber-500 hover:bg-amber-400 text-station-950 font-bold px-4 py-2 rounded flex items-center gap-1">
+                            <i class="fa-solid fa-play text-xs mr-1"></i> Stream Episode
+                        </button>
+                    </div>
+                `;
+
+                modal.classList.remove('hidden');
+            };
+
+            document.getElementById('modal-close-btn')?.addEventListener('click', () => {
+                document.getElementById('dossier-modal')?.classList.add('hidden');
+            });
+
+            // Initial RSS fetch
+            fetchStationRSS();
+
+        });
+
+        function updateRadarSpotlight(title, desc, location) {
+            document.getElementById('radar-title').textContent = title;
+            document.getElementById('radar-desc').textContent = desc;
+            document.getElementById('radar-location-tag').textContent = location;
+        }
+    </script>
+</body>
+</html>
