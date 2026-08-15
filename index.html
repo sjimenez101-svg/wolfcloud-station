@@ -303,7 +303,7 @@
             
             <div class="flex items-center gap-4 text-xs">
                 <span id="top-latest-banner" class="text-slate-400 font-mono truncate max-w-xs sm:max-w-md">
-                    <span class="text-amber-500 font-bold">ACTIVE RESEARCH:</span> Clinton Road • The Lead Masks Case • The Springfield Three (1992)
+                    <span class="text-amber-500 font-bold">ACTIVE RESEARCH:</span> The Lead Masks Case • The Springfield Three (1992) • The Circleville Writer (1976–1980s)
                 </span>
                 <a href="#shortwave-tuner" class="text-amber-400 hover:text-amber-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 transition-colors">
                     <i class="fa-solid fa-sliders text-[10px]"></i> Radio Dial
@@ -496,7 +496,7 @@
                     </div>
                 </article>
 
-                <!-- UPCOMING CASE 2: Clinton Road -->
+                <!-- UPCOMING CASE 2: The Circleville Writer -->
                 <article class="bg-station-950 border-2 border-station-800 hover:border-amber-500/80 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl relative overflow-hidden group">
                     <div class="absolute top-0 right-0 bg-amber-500/10 border-b border-l border-amber-500/30 text-amber-400 font-mono text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider">
                         RESEARCH IN PROGRESS
@@ -504,27 +504,27 @@
 
                     <div class="space-y-4">
                         <div class="w-12 h-12 bg-station-900 border border-station-700 rounded-xl flex items-center justify-center text-amber-400 text-xl shadow-inner group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-road"></i>
+                            <i class="fa-solid fa-envelope"></i>
                         </div>
 
                         <div>
                             <div class="font-mono text-[11px] text-slate-400 flex items-center gap-1.5 mb-1">
-                                <i class="fa-solid fa-location-dot text-amber-500"></i> West Milford, New Jersey
+                                <i class="fa-solid fa-location-dot text-amber-500"></i> Circleville, Ohio
                             </div>
                             <h3 class="font-cinzel text-xl font-bold text-slate-100 group-hover:text-amber-400 transition-colors">
-                                Clinton Road
+                                The Circleville Writer
                             </h3>
-                            <span class="font-mono text-[10px] text-slate-500">ONGOING: LEGEND & LORE</span>
+                            <span class="font-mono text-[10px] text-slate-500">DATES: 1976 – 1980s</span>
                         </div>
 
                         <p class="text-slate-300 text-xs font-light leading-relaxed line-clamp-4">
-                            Stretching roughly ten miles through the Passaic County woods, Clinton Road has earned a reputation as one of the most haunted roads in America. Decades of reported ghost sightings, phantom vehicles, a cursed stone bridge, and a string of unsolved disappearances have turned this stretch of rural New Jersey into a magnet for legend-trippers and true crime researchers alike.
+                            Starting in 1976, an anonymous letter-writer began flooding a small Ohio town with cruel, uncannily well-informed notes exposing residents' private affairs. The harassment escalated to a roadside booby-trap gun rigged to kill, a wrongful conviction, and letters that kept arriving even after the presumed culprit was behind bars—leaving the true identity of "the Circleville Writer" unresolved to this day.
                         </p>
                     </div>
 
                     <div class="pt-6 border-t border-station-800/80 mt-6 flex items-center justify-between font-mono text-xs">
                         <span class="text-slate-500 text-[10px]"><i class="fa-solid fa-clock text-amber-500 mr-1"></i> Script Draft 20%</span>
-                        <button onclick="openResearchDossier('clintonroad')" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        <button onclick="openResearchDossier('circleville')" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                             Inspect Case <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
                     </div>
@@ -1611,29 +1611,29 @@
             };
 
             const researchDossiers = {
-                clintonroad: {
-                    title: "Clinton Road",
-                    location: "West Milford, Passaic County, New Jersey, USA",
-                    period: "Ongoing – Legend & Lore",
+                circleville: {
+                    title: "The Circleville Writer",
+                    location: "Circleville, Pickaway County, Ohio, USA",
+                    period: "1976 – 1980s",
                     badge: "RESEARCH IN PROGRESS",
                     badgeColor: "amber",
                     content: `
-                        <p><strong>The Location:</strong> A roughly ten-mile stretch of dark, winding rural road through the Passaic County woods, widely cited as one of the most haunted roads in America and a long-running magnet for local legend and true crime lore.</p>
+                        <p><strong>The Beginning:</strong> In March 1976, school bus driver Mary Gillispie began receiving anonymous letters accusing her of an affair with the local school superintendent. The letters soon spread to other residents, revealing private details no stranger should have known.</p>
 
-                        <p><strong>Notable Lore & Incidents:</strong></p>
+                        <p><strong>Escalation:</strong></p>
                         <ul class="list-disc pl-5 space-y-1 text-slate-300">
-                            <li><strong>The Ghost Boy of Dead Man's Curve:</strong> Drivers report a phantom child near an old stone bridge, said to toss coins into the creek below in tribute to avoid misfortune.</li>
-                            <li><strong>Clinton Road Castle:</strong> An abandoned nearby estate long rumored (without evidence) to be tied to occult gatherings, feeding decades of local rumor.</li>
-                            <li><strong>Phantom Vehicles:</strong> Numerous reports of a mysterious black pickup truck and other vehicles appearing and vanishing on the road at night.</li>
-                            <li><strong>Unsolved Disappearances:</strong> Several missing-persons cases connected to the surrounding woods and reservoirs remain unresolved.</li>
+                            <li>In August 1977, Mary's husband Ron Gillispie died in a suspicious single-car crash while reportedly on his way to confront the letter-writer.</li>
+                            <li>In 1983, a booby-trapped pistol rigged to fire was discovered wired to Mary's mailbox — the trap failed and she survived.</li>
+                            <li>Mary's brother-in-law, Paul Freshour, was convicted in connection with the mailbox gun and served over a decade in prison.</li>
+                            <li>Letters bearing the same style and handwriting continued arriving in Circleville even after Freshour was incarcerated, and after his 1994 release.</li>
                         </ul>
 
                         <div class="bg-station-950 p-3 rounded-lg border border-station-800 font-mono text-xs text-amber-400">
-                            <strong>RESEARCH STATUS:</strong> Compiling local police reports, decades of eyewitness accounts, and site history ahead of a scouting trip.
+                            <strong>RESEARCH STATUS:</strong> Cross-referencing handwriting analysis reports, court records, and local newspaper archives ahead of scripting.
                         </div>
 
                         <div class="bg-station-950 p-3 rounded-lg border border-red-900/40 font-mono text-xs text-slate-400">
-                            <strong class="text-red-400">FIELD NOTE:</strong> A 1980s missing-persons tip named a person of interest living near <span class="redacted" onclick="this.classList.toggle('revealed')">the reservoir access road off Cannon Road</span> — never formally corroborated.
+                            <strong class="text-red-400">FIELD NOTE:</strong> Handwriting examiners at the time flagged inconsistencies suggesting <span class="redacted" onclick="this.classList.toggle('revealed')">more than one person may have written the letters over the years</span> — never conclusively resolved.
                         </div>
                     `
                 },
