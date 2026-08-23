@@ -303,7 +303,7 @@
             
             <div class="flex items-center gap-4 text-xs">
                 <span id="top-latest-banner" class="text-slate-400 font-mono truncate max-w-xs sm:max-w-md">
-                    <span class="text-amber-500 font-bold">ACTIVE RESEARCH:</span> The Lead Masks Case • The Springfield Three (1992) • The Circleville Writer (1976–1980s)
+                    <span class="text-amber-500 font-bold">ACTIVE RESEARCH:</span> The Mystery of the Mary Celeste (1872) • The Springfield Three (1992) • The Circleville Writer (1976–1980s)
                 </span>
                 <a href="#shortwave-tuner" class="text-amber-400 hover:text-amber-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 transition-colors">
                     <i class="fa-solid fa-sliders text-[10px]"></i> Radio Dial
@@ -530,35 +530,35 @@
                     </div>
                 </article>
 
-                <!-- UPCOMING CASE 3: The Lead Masks Case -->
+                <!-- UPCOMING CASE 3: The Mystery of the Mary Celeste -->
                 <article class="bg-station-950 border-2 border-station-800 hover:border-emerald-500/80 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-2xl relative overflow-hidden group">
                     <div class="absolute top-0 right-0 bg-emerald-500/10 border-b border-l border-emerald-500/30 text-emerald-400 font-mono text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider">
-                        ARCHIVE TRANSLATION
+                        RESEARCH IN PROGRESS
                     </div>
 
                     <div class="space-y-4">
                         <div class="w-12 h-12 bg-station-900 border border-station-700 rounded-xl flex items-center justify-center text-emerald-400 text-xl shadow-inner group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-mask"></i>
+                            <i class="fa-solid fa-ship"></i>
                         </div>
 
                         <div>
                             <div class="font-mono text-[11px] text-slate-400 flex items-center gap-1.5 mb-1">
-                                <i class="fa-solid fa-location-dot text-emerald-500"></i> Niterói, Rio de Janeiro, Brazil
+                                <i class="fa-solid fa-location-dot text-emerald-500"></i> North Atlantic Ocean, near the Azores
                             </div>
                             <h3 class="font-cinzel text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
-                                The Lead Masks Case
+                                The Mystery of the Mary Celeste
                             </h3>
-                            <span class="font-mono text-[10px] text-slate-500">DATE: AUGUST 19, 1966</span>
+                            <span class="font-mono text-[10px] text-slate-500">DISCOVERED: DECEMBER 4, 1872</span>
                         </div>
 
                         <p class="text-slate-300 text-xs font-light leading-relaxed line-clamp-4">
-                            Two Brazilian electronic technicians, Manoel Pereira da Cruz and Miguel José Viana, were found dead on a desolate hill wearing formal suits, raincoats, and custom lead eye masks designed to protect against radiation. Found next to them was a mysterious notebook containing cryptic instructions: "16:30 be at the specified location... 18:30 swallow capsules, after effect protect metals wait for signal mask."
+                            On December 4, 1872, the merchant brigantine Mary Celeste was found adrift and abandoned in the Atlantic Ocean near the Azores, sailing without a soul aboard. Her cargo was undisturbed, the crew's belongings were still in place, and the single lifeboat was missing—yet Captain Benjamin Briggs, his family, and the entire seven-man crew were never seen again.
                         </p>
                     </div>
 
                     <div class="pt-6 border-t border-station-800/80 mt-6 flex items-center justify-between font-mono text-xs">
-                        <span class="text-slate-500 text-[10px]"><i class="fa-solid fa-file-invoice text-emerald-500 mr-1"></i> Final Polish</span>
-                        <button onclick="openResearchDossier('leadmasks')" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        <span class="text-slate-500 text-[10px]"><i class="fa-solid fa-clock text-emerald-500 mr-1"></i> Script Draft 20%</span>
+                        <button onclick="openResearchDossier('marycelesteship')" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                             Inspect Case <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
                     </div>
@@ -1661,6 +1661,32 @@
 
                         <div class="bg-station-950 p-3 rounded-lg border border-red-900/40 font-mono text-xs text-slate-400">
                             <strong class="text-red-400">FIELD NOTE:</strong> Investigators' leading theory centers on <span class="redacted" onclick="this.classList.toggle('revealed')">a local man later cleared by DNA testing in 2004</span>, keeping the case officially unsolved.
+                        </div>
+                    `
+                },
+                marycelesteship: {
+                    title: "The Mystery of the Mary Celeste",
+                    location: "North Atlantic Ocean, near the Azores",
+                    period: "Discovered December 4, 1872",
+                    badge: "RESEARCH IN PROGRESS",
+                    badgeColor: "emerald",
+                    content: `
+                        <p><strong>The Discovery:</strong> On December 4, 1872, the crew of the Dei Gratia spotted the merchant brigantine Mary Celeste drifting erratically in the Atlantic between the Azores and Portugal. Boarding her, they found a completely deserted, seaworthy ship — no captain, no crew, no passengers.</p>
+
+                        <p><strong>Baffling Factors:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                            <li>Captain Benjamin Briggs, his wife, young daughter, and all seven crew members had vanished without a trace, and none were ever found.</li>
+                            <li>The cargo of 1,701 barrels of denatured alcohol was almost entirely intact, and personal belongings, valuables, and food supplies were left untouched in the crew's quarters.</li>
+                            <li>The ship's single lifeboat was missing, suggesting the crew abandoned ship deliberately — but for reasons that remain unknown.</li>
+                            <li>The last log entry was dated ten days and roughly 400 nautical miles prior to discovery, offering no indication of distress.</li>
+                        </ul>
+
+                        <div class="bg-station-950 p-3 rounded-lg border border-station-800 font-mono text-xs text-emerald-400">
+                            <strong>RESEARCH STATUS:</strong> Reviewing period admiralty inquiry transcripts, the ship's cargo manifest, and modern reappraisals of the case ahead of scripting.
+                        </div>
+
+                        <div class="bg-station-950 p-3 rounded-lg border border-red-900/40 font-mono text-xs text-slate-400">
+                            <strong class="text-red-400">FIELD NOTE:</strong> A recurring theory holds that <span class="redacted" onclick="this.classList.toggle('revealed')">alcohol fumes venting from the cargo hold triggered a panic that the crew mistook for imminent explosion, prompting them to abandon ship</span> — plausible, but never proven, and still debated by maritime historians.
                         </div>
                     `
                 },
