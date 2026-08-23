@@ -1111,6 +1111,29 @@
 
                 </form>
 
+                <!-- Newsletter Signup -->
+                <div class="mt-6 bg-black/60 border border-station-800 rounded-xl p-5 crt-terminal">
+                    <div class="flex items-center gap-2 mb-1 font-mono text-xs text-amber-500 uppercase tracking-widest">
+                        <i class="fa-solid fa-tower-broadcast"></i> Signal Subscription
+                    </div>
+                    <h4 class="font-cinzel text-lg font-bold text-slate-100 mb-1">Get Notified When New Episodes Drop</h4>
+                    <p class="text-slate-400 text-xs font-sans font-light leading-relaxed mb-4">
+                        No spam, just a signal when a new case file airs. Join the station's mailing list.
+                    </p>
+
+                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3" onsubmit="submitNewsletter(event)">
+                        <input type="hidden" name="form_type" value="newsletter_signup">
+                        <input type="hidden" name="_subject" value="New Wolfcloud Station newsletter signup">
+                        <input type="email" id="newsletter-email" name="email" required placeholder="your@email.com" class="flex-1 bg-station-900 border border-station-700 rounded p-2.5 text-slate-200 text-xs placeholder-slate-600 focus:outline-none focus:border-amber-500">
+                        <button type="submit" id="newsletter-submit-btn" class="bg-amber-500 hover:bg-amber-400 text-station-950 font-bold px-5 py-2.5 rounded text-xs transition-all flex items-center gap-2 justify-center shrink-0">
+                            <i class="fa-solid fa-satellite-dish"></i> Subscribe
+                        </button>
+                    </form>
+                    <div id="newsletter-status" class="text-xs text-slate-500 flex items-center gap-2 mt-3">
+                        <span class="w-2 h-2 rounded-full bg-slate-600"></span> Awaiting signal...
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -1238,8 +1261,10 @@
             /* 0. Tune-In Static Intro Overlay */
             const tuneInOverlay = document.getElementById('tune-in-overlay');
             const tuneInCanvas = document.getElementById('tune-in-canvas');
+            let tunedInAlready = false;
+            try { tunedInAlready = !!sessionStorage.getItem('wcs_tuned_in'); } catch {}
             if (tuneInOverlay && tuneInCanvas) {
-                if (sessionStorage.getItem('wcs_tuned_in')) {
+                if (tunedInAlready) {
                     tuneInOverlay.remove();
                 } else {
                     const tctx = tuneInCanvas.getContext('2d');
@@ -1268,7 +1293,7 @@
                     drawStatic();
 
                     const dismissTuneIn = () => {
-                        sessionStorage.setItem('wcs_tuned_in', '1');
+                        try { sessionStorage.setItem('wcs_tuned_in', '1'); } catch {}
                         tuneInOverlay.classList.add('fading');
                         cancelAnimationFrame(staticRAF);
                         setTimeout(() => tuneInOverlay.remove(), 650);
@@ -1847,6 +1872,38 @@
                     btn.disabled = false;
                     btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Transmit Payload`;
                     status.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Transmission failed. Signal lost — please try again.`;
+                }
+            };
+
+            window.submitNewsletter = async function(e) {
+                e.preventDefault();
+                const form = document.getElementById('newsletter-form');
+                const status = document.getElementById('newsletter-status');
+                const btn = document.getElementById('newsletter-submit-btn');
+                const email = document.getElementById('newsletter-email').value;
+
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Subscribing...`;
+                status.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span> Registering signal with station...`;
+
+                try {
+                    const res = await fetch(DISPATCH_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: new FormData(form)
+                    });
+
+                    if (!res.ok) throw new Error(`Signup endpoint responded ${res.status}`);
+
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-check"></i> Subscribed`;
+                    status.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Signal locked. [${email}] added to the station wire.`;
+                    form.reset();
+                } catch (err) {
+                    console.warn('Newsletter signup failed:', err);
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-satellite-dish"></i> Subscribe`;
+                    status.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Signup failed. Signal lost — please try again.`;
                 }
             };
 
