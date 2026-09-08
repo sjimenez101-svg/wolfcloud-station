@@ -2022,8 +2022,11 @@
                 }
 
                 try {
-                    const res = await fetch(`https://proxy.cors.sh/${RSS_FEED_URL}`);
-                    if (!res.ok) throw new Error(`Proxy responded ${res.status}`);
+                    // Libsyn serves the feed with Access-Control-Allow-Origin: *, so it can be
+                    // fetched directly from the browser — no third-party CORS proxy required
+                    // (the previous proxy.cors.sh dependency has gone offline / stopped resolving).
+                    const res = await fetch(RSS_FEED_URL);
+                    if (!res.ok) throw new Error(`Feed request responded ${res.status}`);
                     const xmlText = await res.text();
                     const items = parseFeedXML(xmlText);
                     if (!items) throw new Error('No episodes found in feed');
